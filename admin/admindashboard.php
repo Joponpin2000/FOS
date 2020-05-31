@@ -59,30 +59,19 @@ else
                             </div>
                             <ul class="list-unstyled components">
                                 <li class="active">
-                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Dashboards</a>
+                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Admin</a>
                                     <ul class="collapse list-unstyled" id="homeSubmenu">
-                                        <li>
-                                            <a href="">Change Username</a>
-                                        </li>
                                         <li>
                                             <a href="">Change Password</a>
                                         </li>
                                         <li>
-                                            <a href="">Logout</a>
+                                            <a href="../logout.php">Logout</a>
                                         </li>
                                     </ul>
                                 </li>
                                 </ul>
                             </div>
                         <ul class="list-unstyled components">
-                            <li class="active">
-                                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Dashboards</a>
-                                <ul class="collapse list-unstyled" id="homeSubmenu">
-                                    <li>
-                                        <a href="">Dashboards</a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li>
                                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reg Users</a>
                                 <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -180,7 +169,7 @@ else
                     <div id="content" style="width: 100%;">
                         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                             <div class="pull-left">
-                                <button type="button" id="sidebarCollapse" class="btn btn-info" style="background-color: white;">
+                                <button type="button" class="navbar-toggler btn btn-info" style="background-color: white;" data-toggle="collapse" data-target="#sidebar" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                             </div>
@@ -188,13 +177,13 @@ else
                                 <h4>Food Ordering System!!</h4>
                             </div>
                             <div class="pull-right">
-                                <a href="">Logout</a>
+                                <a href="../logout.php">Logout</a>
                             </div>
                         </nav>
                         <div class="container">
                            <div class="row">
                             <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: 30px;">
                                     <div class="panel-heading">
                                         <h5>TOTAL ORDER</h5>
                                     </div>
@@ -205,7 +194,7 @@ else
                                 </div>
                             </div> 
                             <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: 30px;">
                                     <div class="panel-heading">
                                         <h5>NEW ORDER</h5>
                                     </div>
@@ -216,7 +205,7 @@ else
                                 </div>
                             </div> 
                             <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: 30px;">
                                     <div class="panel-heading">
                                         <h5>CONFIRMED ORDER</h5>
                                     </div>
@@ -229,7 +218,7 @@ else
                            </div>
                            <div class="row">
                             <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: 30px;">
                                     <div class="panel-heading">
                                         <h5>TOTAL FOOD DELIVERED</h5>
                                     </div>
@@ -240,7 +229,7 @@ else
                                 </div>
                             </div> 
                             <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: 30px;">
                                     <div class="panel-heading">
                                         <h5>FOOD BEING PREPARED</h5>
                                     </div>
@@ -251,7 +240,7 @@ else
                                 </div>
                             </div> 
                             <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: 30px;">
                                     <div class="panel-heading">
                                         <h5>FOOD PICKUP</h5>
                                     </div>
@@ -264,7 +253,7 @@ else
                            </div>
                            <div class="row">
                             <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-info"  style="border: 5px thick #0f1a1d;">
+                                <div class="panel panel-info"  style="border: 5px thick #0f1a1d; margin-bottom:30px">
                                     <div class="panel-heading">
                                         <h5>CANCELLED ORDER</h5>
                                     </div>
@@ -275,12 +264,17 @@ else
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: 30px;">
                                     <div class="panel-heading">
                                         <h5>TOTAL REGD. USER</h5>
                                     </div>
                                     <div class="panel-body">
-                                        <h4>5</h4>
+                                        <h4><?php
+    $query = "SELECT * FROM users"; 
+    $result = mysqli_query($db_connect, $query);
+    $num_reg_users = mysqli_num_rows($result);
+    echo $num_reg_users;
+                                        ?></h4>
                                         <small>Total regd. user</small>
                                     </div>
                                 </div>
@@ -302,6 +296,7 @@ else
             </div><!-- end container -->
         </div><!-- end copyrights -->
     
+        <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
 
 

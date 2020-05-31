@@ -192,16 +192,25 @@ function validateProfile(form) {
     /* ==============================================
     Back top
     =============================================== */
+    
     jQuery(window).scroll(function() {
+        var duration = 500;
         if (jQuery(this).scrollTop() > 1) {
             jQuery('.dmtop').css({
                 bottom: "10px"
-            });
+            })
         } else {
             jQuery('.dmtop').css({
                 bottom: "-100px"
-            });
+            })
         }
+    })
+
+
+    jQuery(".dmtop").click(function () {
+        jQuery("body, html").animate({
+            scrollTop: 0
+        }, 600);
     });
 
 
