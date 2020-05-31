@@ -58,7 +58,7 @@ include_once 'functions.php';
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Home</a>
+                                        <a class="nav-link" href="index.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -152,7 +152,7 @@ include_once 'functions.php';
 
         <!-- Breadcrumb -->
         <ul class="breadcrumb">
-            <li><a href="home.php" style="color: red;">Home</a></li>
+            <li><a href="index.php" style="color: red;">Home</a></li>
             <li><a href="#">Cart</a></li>
             <li>Cart Details</li>
         </ul>

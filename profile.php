@@ -223,7 +223,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Home</a>
+                                        <a class="nav-link" href="index.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -319,7 +319,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
 
         <!-- Breadcrumb -->
         <ul class="breadcrumb">
-            <li><a href="home.php" style="color: red;">Home</a></li>
+            <li><a href="index.php" style="color: red;">Home</a></li>
             <li>Profile</li>
 
         </ul>

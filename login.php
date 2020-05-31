@@ -9,7 +9,7 @@ require_once "functions.php";
 //check if the user is already logged in, if yes then redirect him to welcome page
 if($loggedin)
     {
-        header("location: home.php");
+        header("location: index.php");
         exit;
     }
 
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             $_SESSION["username"] = $username;
 
                             // Redirect user to home page
-                            header("location: home.php");
+                            header("location: index.php");
                         }
                         else
                         {
@@ -161,7 +161,7 @@ mysqli_close($db_connect);
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Home</a>
+                                        <a class="nav-link" href="index.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -220,7 +220,7 @@ mysqli_close($db_connect);
 
             <!-- Breadcrumb -->
             <ul class="breadcrumb">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#">login Page</a></li>
                 <li>Login</li>
 
