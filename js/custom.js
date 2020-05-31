@@ -1,25 +1,21 @@
 /******************************************
     Version: 1.0
 /****************************************** */
-function validate(form)
-{
-    if (form.firstname.value == "")
-    {
-        alert("Please provide firstname!" );
+function validate(form) {
+    if (form.firstname.value == "") {
+        alert("Please provide firstname!");
         form.firstname.focus();
         return false;
     }
 
-    if (form.lastname.value == "")
-    {
-        alert("Please provide lastname!" );
+    if (form.lastname.value == "") {
+        alert("Please provide lastname!");
         form.lastname.focus();
         return false;
     }
 
-    if (form.email.value == "")
-    {
-        alert("Please provide your email!" );
+    if (form.email.value == "") {
+        alert("Please provide your email!");
         form.email.focus();
         return false;
     }
@@ -27,24 +23,21 @@ function validate(form)
     validateEmail(form);
 
 
-    if (form.username.value == "")
-    {
-        alert("Please provide username!" );
+    if (form.username.value == "") {
+        alert("Please provide username!");
         form.username.focus();
         return false;
     }
 
-    
-    if (form.password.value == "")
-    {
-        alert("Please provide password!" );
+
+    if (form.password.value == "") {
+        alert("Please provide password!");
         form.password.focus();
         return false;
     }
 
-    if (form.rpassword.value != form.password.value)
-    {
-        alert("Please Repeat password!" );
+    if (form.rpassword.value != form.password.value) {
+        alert("Please Repeat password!");
         form.rpassword.focus();
         return false;
     }
@@ -53,16 +46,14 @@ function validate(form)
 
 
 function validateLogin(form) {
-    if (form.username.value == "")
-    {
-        alert("Enter registered username!" );
+    if (form.username.value == "") {
+        alert("Enter registered username!");
         form.username.focus();
         return false;
     }
 
-    if (form.password.value == "")
-    {
-        alert("Please provide password!" );
+    if (form.password.value == "") {
+        alert("Please provide password!");
         form.password.focus();
         return false;
     }
@@ -80,13 +71,12 @@ function validateEmail(form) {
         form.emailnum.focus();
         return false;
     }
-    return ( true);
+    return (true);
 }
 
 
 function validateOrderNumber(form) {
-    if (form.ordernum.value == "")
-    {
+    if (form.ordernum.value == "") {
         alert("Please enter Order Number!");
         form.ordernum.focus();
         return false;
@@ -94,15 +84,13 @@ function validateOrderNumber(form) {
 }
 
 function validateSettings(form) {
-    if (form.newpassword.value == "")
-    {
+    if (form.newpassword.value == "") {
         alert("Please enter New Password!");
         form.newpassword.focus();
         return false;
     }
 
-    if (form.newpassword.value != form.conpassword.value)
-    {
+    if (form.newpassword.value != form.conpassword.value) {
         alert("Please repeat Password!");
         form.conpassword.focus();
         return false;
@@ -111,23 +99,20 @@ function validateSettings(form) {
 }
 
 function validateProfile(form) {
-    if (form.firstname.value == "")
-    {
-        alert("Please provide firstname!" );
+    if (form.firstname.value == "") {
+        alert("Please provide firstname!");
         form.firstname.focus();
         return false;
     }
 
-    if (form.lastname.value == "")
-    {
-        alert("Please provide lastname!" );
+    if (form.lastname.value == "") {
+        alert("Please provide lastname!");
         form.lastname.focus();
         return false;
     }
 
-    if (form.username.value == "")
-    {
-        alert("Please provide username!" );
+    if (form.username.value == "") {
+        alert("Please provide username!");
         form.username.focus();
         return false;
     }
@@ -138,62 +123,59 @@ function validateProfile(form) {
 
 
 
-(function($) {
+(function ($) {
     "use strict";
 
     //search product function
-    $(document).ready(function(){
-	
-        $("#food-search").keypress(function()
-                 {
-                  load_data();
-                  function load_data(query)
-                      {
-                       $.ajax({
-                       url:"fetchfood.php",
-                       method:"post",
-                       data:{query:query},
-                       success:function(data)
-                                    {
-                                      $('#result').html(data);
-                                     }
-                               });
-                        }
+    $(document).ready(function () {
 
-                      $('#food-search').keyup(function(){
-                      var search = $(this).val();
-                          if(search != '')
-                              {
-                                load_data(search);
-                               }
-                           else
-                            {
-                            $('#result').html(data);			
-                             }
-                           });
-                         });
-                       });
+        $("#food-search").keypress(function () {
+            load_data();
+
+            function load_data(query) {
+                $.ajax({
+                    url: "fetchfood.php",
+                    method: "post",
+                    data: {
+                        query: query
+                    },
+                    success: function (data) {
+                        $('#result').html(data);
+                    }
+                });
+            }
+
+            $('#food-search').keyup(function () {
+                var search = $(this).val();
+                if (search != '') {
+                    load_data(search);
+                } else {
+                    $('#result').html(data);
+                }
+            });
+        });
+    });
 
     /* ==============================================
     Fixed menu
     =============================================== */
-    
-	$(window).on('scroll', function () {
-		if ($(window).scrollTop() > 50) {
-			//$('.top-navbar').addClass('fixed-menu');
-		} else {
-			//$('.top-navbar').removeClass('fixed-menu');
-		}
+
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() > 50) {
+            //$('.top-navbar').addClass('fixed-menu');
+        } else {
+            //$('.top-navbar').removeClass('fixed-menu');
+        }
     });
-    
+
 
 
 
     /* ==============================================
     Back top
     =============================================== */
-    
-    jQuery(window).scroll(function() {
+
+    jQuery(window).scroll(function () {
         var duration = 500;
         if (jQuery(this).scrollTop() > 1) {
             jQuery('.dmtop').css({
@@ -206,15 +188,14 @@ function validateProfile(form) {
         }
     })
 
+jQuery(".dmtop").click(function () {
+jQuery("body, html").animate({
+    scrollTop: 0
+}, 600);
+});
 
-    jQuery(".dmtop").click(function () {
-        jQuery("body, html").animate({
-            scrollTop: 0
-        }, 600);
-    });
 
 
-    
-    
-	
+
+
 })(jQuery);
