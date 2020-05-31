@@ -65,7 +65,7 @@ else
                                             <a href="">Change Password</a>
                                         </li>
                                         <li>
-                                            <a href="../logout.php">Logout</a>
+                                            <a href="logout.php">Logout</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -169,7 +169,7 @@ else
                     <div id="content" style="width: 100%;">
                         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                             <div class="pull-left">
-                                <button type="button" class="navbar-toggler btn btn-info" style="background-color: white;" data-toggle="collapse" data-target="#sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                <button type="button" class="navbar-toggler btn btn-info" style="background-color: white;" data-toggle="collapse" data-target="" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                             </div>
@@ -177,109 +177,55 @@ else
                                 <h4>Food Ordering System!!</h4>
                             </div>
                             <div class="pull-right">
-                                <a href="../logout.php">Logout</a>
+                                <a href="logout.php">Logout</a>
                             </div>
                         </nav>
-                        <div class="container">
-                           <div class="row">
-                            <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default" style="margin-bottom: 30px;">
-                                    <div class="panel-heading">
-                                        <h5>TOTAL ORDER</h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h4>4</h4>
-                                        <small>Total Order</small>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default" style="margin-bottom: 30px;">
-                                    <div class="panel-heading">
-                                        <h5>NEW ORDER</h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h4>2</h4>
-                                        <small>New Order</small>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default" style="margin-bottom: 30px;">
-                                    <div class="panel-heading">
-                                        <h5>CONFIRMED ORDER</h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h4>0</h4>
-                                        <small>Confirmed Order</small>
-                                    </div>
-                                </div>
-                            </div>    
-                           </div>
-                           <div class="row">
-                            <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default" style="margin-bottom: 30px;">
-                                    <div class="panel-heading">
-                                        <h5>TOTAL FOOD DELIVERED</h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h4>6</h4>
-                                        <small>Total food delivered</small>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default" style="margin-bottom: 30px;">
-                                    <div class="panel-heading">
-                                        <h5>FOOD BEING PREPARED</h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h4>0</h4>
-                                        <small>Food being prepared</small>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default" style="margin-bottom: 30px;">
-                                    <div class="panel-heading">
-                                        <h5>FOOD PICKUP</h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h4>1</h4>
-                                        <small>Food pickup</small>
-                                    </div>
-                                </div>
-                            </div>    
-                           </div>
-                           <div class="row">
-                            <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-info"  style="border: 5px thick #0f1a1d; margin-bottom:30px">
-                                    <div class="panel-heading">
-                                        <h5>CANCELLED ORDER</h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h4>2</h4>
-                                        <small>Cancelled Order</small>
+
+                        <div class="wrapper">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="page-header clearfix">
+                                        <h2 class="pull-left">Registered Users Details</h2>
+                                        </div>
+                                        <?php
+                                        //Include config file
+                                        require_once "../functions.php";
+
+                                        // Attempt select query execution
+                                        $sql = "SELECT * FROM users";
+                                        if ($result = mysqli_query($db_connect, $sql))
+                                        {
+                                            if (mysqli_num_rows($result) > 0)
+                                            {
+                                                echo "<table class='table table-bordered table-striped'>";
+                                                echo "<thead><tr><th>#</th><th>Name</th><th>Email</th><th>Registered Date</th></tr><thead><tbody>";
+                                                while ($row = mysqli_fetch_array($result))
+                                                {
+                                                    echo "<tr><td>" . $row['id'] . "</td>";
+                                                    echo "<td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>";
+                                                    echo "<td>" . $row['email'] . "</td>";
+                                                    echo "<td>" . $row['created_at'] . "</td></tr>";
+                                                }
+                                                echo "</tbody></table>";
+
+                                                // Free result Set
+                                                mysqli_free_result($result);
+                                            }
+                                            else {
+                                                echo "<p class='lead'><em>No records were found.</em></p>";
+                                            }
+                                        }
+                                        else {
+                                            echo "ERROR: Try again later" . mysqli_error($link);
+                                        }
+
+                                        // Close Connection
+                                        mysqli_close($db_connect);
+                                        ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-4 col-lg-4 box">
-                                <div class="panel panel-default" style="margin-bottom: 30px;">
-                                    <div class="panel-heading">
-                                        <h5>TOTAL REGD. USER</h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h4><?php
-    $query = "SELECT * FROM users"; 
-    $result = mysqli_query($db_connect, $query);
-    $num_reg_users = mysqli_num_rows($result);
-    echo $num_reg_users;
-                                        ?></h4>
-                                        <small>Total regd. user</small>
-                                    </div>
-                                </div>
-                            </div> 
-                           </div>
                         </div>
                     </div>
                 </div>        
