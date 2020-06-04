@@ -3,7 +3,7 @@ session_start();
 require_once '../functions.php';
 if(!isset($_SESSION['admin']))
 {
-	header("location:admin.php");
+	header("location:adminlogin.php");
 	
 }
 else
@@ -54,7 +54,7 @@ else
                 <div id="sidebar">
                     <nav>
                         <div class="sidebar-header">
-                            <div style=" background-color: #110707; border-radius: 50px;">
+                            <div>
                                 <i class="fa fa-user fa-5x"></i>
                             </div>
                             <ul class="list-unstyled components">
@@ -69,165 +69,95 @@ else
                                         </li>
                                     </ul>
                                 </li>
-                                </ul>
-                            </div>
-                        <ul class="list-unstyled components">
-                            <li>
-                                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reg Users</a>
-                                <ul class="collapse list-unstyled" id="pageSubmenu">
-                                    <li>
-                                        <a href="">Reg Users</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#foodSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Food Category</a>
-                                <ul class="collapse list-unstyled" id="foodSubmenu">
-                                    <li>
-                                        <a href="">Food Category</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Manage Food Category</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#menuSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Food Menu</a>
-                                <ul class="collapse list-unstyled" id="menuSubmenu">
-                                    <li>
-                                        <a href="">Add Food</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Manage Food</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#orderSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Orders</a>
-                                <ul class="collapse list-unstyled" id="orderSubmenu">
-                                    <li>
-                                        <a href="">Not Confirmed Yet</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Orders Confirmed</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Food Being Prepared</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Food Pickup</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Food Delivered</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Cancelled</a>
-                                    </li>
-                                    <li>
-                                        <a href="">All Orders</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
-                                <ul class="collapse list-unstyled" id="reportSubmenu">
-                                    <li>
-                                        <a href="">B/W Dates</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Order Count</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Sales Reports</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Home3</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#searchSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Search</a>
-                                <ul class="collapse list-unstyled" id="searchSubmenu">
-                                    <li>
-                                        <a href="">Search</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Home1</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Home2</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Home3</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                                <li class="active">
+                                    <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Product</a>
+                                    <ul class="collapse list-unstyled" id="productSubmenu">
+                                        <li>
+                                            <a href="">Change Password</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="active">
+                                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                                        <li>
+                                            <a href="">Change Password</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                <div id="content">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                                <span class="fa fa-align-left"></span>
+                            </button>
+                        </div>
+                        <div class="center-block">
+                            <h4>Food Ordering System!!</h4>
+                        </div>
+                        <div class="pull-right">
+                            <a href="logout.php">Logout</a>
+                        </div>
                     </nav>
 
-                </div>
-                    <div id="content" style="width: 100%;">
-                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                            <div class="pull-left">
-                                <button type="button" class="navbar-toggler btn btn-info" style="background-color: white;" data-toggle="collapse" data-target="" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                            </div>
-                            <div class="center-block">
-                                <h4>Food Ordering System!!</h4>
-                            </div>
-                            <div class="pull-right">
-                                <a href="logout.php">Logout</a>
-                            </div>
-                        </nav>
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="page-header clearfix">
+                                    <h2 class="pull-left">Registered Users Details</h2>
+                                    </div>
+                                    <?php
+                                    //Include config file
+                                    require_once "../functions.php";
 
-                        <div class="wrapper">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="page-header clearfix">
-                                        <h2 class="pull-left">Registered Users Details</h2>
-                                        </div>
-                                        <?php
-                                        //Include config file
-                                        require_once "../functions.php";
-
-                                        // Attempt select query execution
-                                        $sql = "SELECT * FROM users";
-                                        if ($result = mysqli_query($db_connect, $sql))
+                                    // Attempt select query execution
+                                    $sql = "SELECT * FROM users";
+                                    if ($result = mysqli_query($db_connect, $sql))
+                                    {
+                                        if (mysqli_num_rows($result) > 0)
                                         {
-                                            if (mysqli_num_rows($result) > 0)
+                                            echo "<table class='table table-bordered table-striped'>";
+                                            echo "<thead><tr><th>#</th><th>Name</th><th>Email</th><th>Registered Date</th></tr><thead><tbody>";
+                                            while ($row = mysqli_fetch_array($result))
                                             {
-                                                echo "<table class='table table-bordered table-striped'>";
-                                                echo "<thead><tr><th>#</th><th>Name</th><th>Email</th><th>Registered Date</th></tr><thead><tbody>";
-                                                while ($row = mysqli_fetch_array($result))
-                                                {
-                                                    echo "<tr><td>" . $row['id'] . "</td>";
-                                                    echo "<td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>";
-                                                    echo "<td>" . $row['email'] . "</td>";
-                                                    echo "<td>" . $row['created_at'] . "</td></tr>";
-                                                }
-                                                echo "</tbody></table>";
+                                                echo "<tr><td>" . $row['id'] . "</td>";
+                                                echo "<td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>";
+                                                echo "<td>" . $row['email'] . "</td>";
+                                                echo "<td>" . $row['created_at'] . "</td></tr>";
+                                            }
+                                            echo "</tbody></table>";
 
-                                                // Free result Set
-                                                mysqli_free_result($result);
-                                            }
-                                            else {
-                                                echo "<p class='lead'><em>No records were found.</em></p>";
-                                            }
+                                            // Free result Set
+                                            mysqli_free_result($result);
                                         }
                                         else {
-                                            echo "ERROR: Try again later" . mysqli_error($link);
+                                            echo "<p class='lead'><em>No records were found.</em></p>";
                                         }
+                                    }
+                                    else {
+                                        echo "ERROR: Try again later" . mysqli_error($link);
+                                    }
 
-                                        // Close Connection
-                                        mysqli_close($db_connect);
-                                        ?>
-                                    </div>
+                                    // Close Connection
+                                    mysqli_close($db_connect);
+                                    ?>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>        
             </div>
         </div>

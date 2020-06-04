@@ -333,57 +333,19 @@ ul.breadcrumb li+li:before {
 .wrapper {
     display: flex;
     width: 100%;
-    align-items: stretch;
-}
-
-a[data-toggle="collapse"] {
-    position: relative;
 }
 
 #sidebar {
-    min-width: 250px;
-    max-height: 250px;
-    min-height: 100vh;
-    background: #0f1a1d;
+    width: 250px;
+    position: fixed;
+    top: o;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
 }
-
-#sidebar li {
-    font-size: 12px;
-}
-
-#sidebar li .dropdown-toggle {
-    font-size: 15px;
-}
-
-#sidebar nav {
-    text-align: center;
-    margin: 50px auto;
-}
-
-#sidebar .sidebar-header {
-    margin-bottom: 50px;
-}
-#sidebar h4, #sidebar a {
-    color: white;
-}
-
-#sidebar ul li {
-    margin-bottom: 20px;
-}
-
-#sidebar.active {
-    margin-left: -250px;
-}
-
-@media (max-width:768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
-
 .wrapper #content .row {
     margin: 40px 0;
 }
