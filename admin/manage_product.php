@@ -67,7 +67,7 @@ if(isset($_POST['submit']))
     $meta_keyword = trim($_POST['meta_keyword']);
 
 
-    $result = mysqli_query($db_connect, "SELECT * FROM product WHERE name='$name'");
+    $result = mysqli_query($db_connect, "SELECT * FROM product WHERE name='$name' ");
     $check = mysqli_num_rows($result);
     if ($check > 0)
     {
@@ -185,6 +185,9 @@ if(isset($_POST['submit']))
                         </li>
                         <li>
                             <a href="contact_us.php">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="logout.php">Logout</a>
                         </li>
                     </ul>
                 </nav>

@@ -130,6 +130,9 @@ if(isset($_POST['submit']))
                         <li>
                             <a href="contact_us.php">Contact Us</a>
                         </li>
+                        <li>
+                            <a href="logout.php">Logout</a>
+                        </li>
                     </ul>
                 </nav>
                 <div id="content" style="padding-left: 20px; width: 100vw">

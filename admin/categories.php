@@ -96,6 +96,9 @@ $result = mysqli_query($db_connect, $sql);
                         <li>
                             <a href="contact_us.php">Contact Us</a>
                         </li>
+                        <li>
+                            <a href="logout.php">Logout</a>
+                        </li>
                     </ul>
                 </nav>
                 <div id="content" style="padding-left: 20px; width: 100vw">
@@ -145,6 +148,7 @@ $result = mysqli_query($db_connect, $sql);
                                         </td>
                                     </tr>
                                 <?php
+                                ++$i;
                                 }
                                 ?>
                             </tbody>
