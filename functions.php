@@ -22,6 +22,14 @@ else
     $loggedin = FALSE;
 }
 
+define('SERVER_PATH', $_SERVER["DOCUMENT_ROOT"]. "/myprojects/FOS/");
+define('SITE_PATH', "http://127.0.0.1/myprojects/FOS/");
+
+
+define('PRODUCT_IMAGE_SERVER_PATH', SERVER_PATH. "admin/media/product/");
+define('PRODUCT_IMAGE_SITE_PATH', SITE_PATH. "/admin/media/product/");
+
+
 // function to create a table
 function createTable($db_connect, $tablename, $tablevalues)
 {

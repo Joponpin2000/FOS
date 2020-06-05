@@ -21,13 +21,63 @@
 body {
     color: #333333;
     font-size: 14px;
-    font-family: 'Rubik', sans-serif;
     line-height: 1.80857;
     background-color: aliceblue;
     margin: 0;
-    font-family:'Lobster', cursive;
+    font-family:'Poppins', sans-serif;
     font-weight:light;
 }
+
+
+
+/*Center the loader*/
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -75px 0 0 -75px;
+    border: 20px solid #c9c9c9;
+    border-top: 10px solid #3498db;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+/*Add animation to "page content"*/
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s;
+}
+
+@-webkit-keyframes animatebottom {
+    from {bottom: -100px; opacity: 0;}
+    to {bottom: 0px; opacity: 1;}
+}
+
+@keyframes animatebottom {
+    from {bottom: -100px; opacity: 0;}
+    to {bottom: 0px; opacity: 1;}
+}
+
+
 img {
     width: 100%;
     height: 200px;
@@ -336,27 +386,83 @@ ul.breadcrumb li+li:before {
 }
 
 #sidebar {
-    width: 250px;
-    position: fixed;
-    top: o;
-    left: 0;
-    height: 100vh;
-    z-index: 999;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
     background: #7386D5;
     color: #fff;
-    transition: all 0.3s;
-}
-.wrapper #content .row {
-    margin: 40px 0;
+    transition: all 0.5s;
 }
 
-.panel{
-    border-radius: 5%;
-    padding: 20px 20px;
-    background-color: white;
-    margin-bottom: 20px;
+#sidebar.active {
+    margin-left: -250px;
 }
 
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+/*=========================================
+===========Dashboard=============*/
+
+
+
+/*=====================================================
+===========================================*/
 #topbtn {
     display: none;
     position: fixed;
@@ -377,56 +483,6 @@ ul.breadcrumb li+li:before {
     background-color: #555;
 }
 
-
-
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
-    overflow: hidden;
-    background: #fff;
-  }
-  
-  #preloader:before {
-    content: "";
-    position: fixed;
-    top: calc(50% - 30px);
-    left: calc(50% - 30px);
-    border: 6px solid #f2f2f2;
-    border-top: 6px solid #0078ff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: animate-preloader 1s linear infinite;
-    animation: animate-preloader 1s linear infinite;
-  }
-  
-  @-webkit-keyframes animate-preloader {
-    0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-  
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes animate-preloader {
-    0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-  
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
 
   .dmtop {
     background-color: rgb(26, 27, 27);

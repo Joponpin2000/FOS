@@ -116,12 +116,18 @@ function validateProfile(form) {
         form.username.focus();
         return false;
     }
-
-
-
 }
 
 
+function myFunction() {
+    myVar = setTimeout(showPage, 500);
+}
+
+function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myDiv").style.display = "block";
+
+}
 
 (function ($) {
     "use strict";
@@ -171,31 +177,36 @@ function validateProfile(form) {
 
 
 
-    /* ==============================================
-    Back top
-    =============================================== */
+/* ==============================================
+Back top
+=============================================== */
 
-    jQuery(window).scroll(function () {
-        var duration = 500;
-        if (jQuery(this).scrollTop() > 1) {
-            jQuery('.dmtop').css({
-                bottom: "10px"
-            })
-        } else {
-            jQuery('.dmtop').css({
-                bottom: "-100px"
-            })
-        }
-    })
+
+jQuery(window).scroll(function() {
+    if (jQuery(this).scrollTop() > 1) {
+        jQuery('.dmtop').css({
+            bottom: "10px"
+        })
+    } else {
+        jQuery('.dmtop').css({
+            bottom: "-100px"
+        })
+    }
+})
+
 
 jQuery(".dmtop").click(function () {
-jQuery("body, html").animate({
-    scrollTop: 0
-}, 600);
+    jQuery("body, html").animate({
+        scrollTop: 0
+    }, 600);
 });
 
-
-
-
-
 })(jQuery);
+
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});

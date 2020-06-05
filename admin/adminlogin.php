@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         $_SESSION["admin"] = $username;
 
                         // Redirect user to home page
-                        header("location: admindashboard.php");
+                        header("location: categories.php");
                     }
                 }
                 else
