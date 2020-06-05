@@ -222,7 +222,7 @@ if($loggedin)
 
         <!-- Breadcrumb -->
         <ul class="breadcrumb">
-            <li><a href="home.php" style="color: red;">Home</a></li>
+            <li><a href="home.php" style="color: #7386D5;">Home</a></li>
             <li><a href="#">Cart</a></li>
             <li>Cart Details</li>
         </ul>
@@ -234,7 +234,7 @@ if($loggedin)
             <div class="row">
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="sidenav">
-                        <h5 style="background-color: red; height: auto; text-align: center; margin: 0 auto;">Food Categories</h5>
+                        <h5 style="background-color: #7386D5; height: auto; text-align: center; margin: 0 auto;">Food Categories</h5>
                         <a href="">Italian</a>
                         <a href="">Thai></a>
                         <a href="">South Italian</a>
@@ -326,7 +326,7 @@ if($loggedin)
                                     <p>TOTAL</p>
                                     <p><b>$ <?php echo $total; ?></b></p>
                                     <small>Free Shipping</small>
-                                    <button type="submit" class="btn btn-info">Place Order</button>    
+                                    <button type="submit" class="btn btn-info" style="background: #7386D5; border-color:  #7386D5">Place Order</button>    
                                 </div>
                             </form>
                         </div>

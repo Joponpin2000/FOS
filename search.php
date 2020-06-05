@@ -11,10 +11,14 @@ if ($loggedin)
         $_SESSION['orders'][] = $_POST['id'];
     }
 }
+
+
+
+if (isset($_GET['id']) && (trim($_GET['id']) != ''))
+{
 ?>
 
 
-?>
 
 <!DOCTYPE html>
 <html>
@@ -139,36 +143,76 @@ if ($loggedin)
         <section>
             <div class="container">
                 <div class="row food-margin">
-                    <div class="col-sm-8 col-md-9 col-lg-9 box">
+                <?php
+                // Prepare a select statement
+    $sql = "SELECT * FROM foods WHERE id = ? ";
+    if ($stmt = mysqli_prepare($db_connect, $sql))
+    {
+        $id = trim($_GET['id']);
+    
+        // SET parameters
+        mysqli_stmt_bind_param($stmt, "i", $param_id);
+        $param_id = $id;
+        
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt))
+        {
+            $result = mysqli_stmt_get_result($stmt);
+            if (mysqli_num_rows($result) == 1)
+            {
+                while ($row = mysqli_fetch_assoc($result))
+                {
+                    ?>
+                                        <div class="col-sm-8 col-md-9 col-lg-9 box">
                         <form method="post">
                         <div class="form-group">
                             <select class="form-control input-lg" style="border: none; background-color: rgb(240, 240, 240);">
-                                <option value="">Corn Pizza</option>
+                                <option value=""><?php echo $row['foodname'];?></option>
                             </select>
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-md-3">
                                 <div class="thumbnail">
-                                    <img src="images/18.jpg" alt="Pizza" />
+                                    <img src="<?php echo $row['filepath']?>" alt="<?php echo $row['description']?>" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="caption">
-                                    <h5>Corn Pizza</h5>
-                                    <p>Sprinkle with salt and pepper: let stand 20 minutes. Place pizza crust on a parchment paper-lined baking sheet</p>
+                                    <h5><?php echo $row['foodname']?></h5>
+                                    <p><?php echo $row['description'] ?></p>
                                 </div>            
                             </div>
                         </div>
                                 </form>
                     </div>
+                    <form method="post">
                     <div class="col-sm-3 col-md-2 col-md-2 box" style="text-align: center;">
                         <h6>Total</h6>
-                        <h5><b>Rs. 220</b></h5>
+                        <h5><b>Rs. <?php echo $row['price']?></b></h5>
                         <p>Free shipping</p>
                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
-                        <input href="<?php if($loggedin) ?>" value="Order Now" onclick="alert('<?php if($loggedin){echo 'Food item has been added to cart';} else{echo 'Please Login to proceed.';}?>')" class="btn btn-info order-button" role="button">
-                                </input>
+                        <input type="submit" onclick="alert('<?php if($loggedin){echo 'Food item has been added to cart';} else{echo 'Please Login to proceed.';}?>')" class="btn btn-info order-button" value="Order now" role="button" />
+                        </input>
                     </div>
+                    </form>
+
+                    <?php
+                }
+            }
+            else
+            {
+                header("location: categories.php");
+                die();            
+            }
+        }
+        else
+        {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+    }
+    mysqli_stmt_close($stmt);
+
+?>
                 </div>
             </div>
         </section>
@@ -270,3 +314,6 @@ if ($loggedin)
         <script src="js/timeline.min.js"></script>
     </body>
 </html>
+<?php
+}
+?>
