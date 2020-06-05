@@ -24,15 +24,54 @@ if (isset($_GET['type']) && trim($_GET['type']) != '')
         {
             $status = '0';
         }
-        $update_status_sql = "UPDATE product SET status='$status' WHERE id='$id'";
-        mysqli_query($db_connect, $update_status_sql);
+        //prepare a select statement
+        $sql = "UPDATE product SET status = ? WHERE id = ? ";
+        if($stmt = mysqli_prepare($db_connect, $sql))
+        {
+            //Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ii", $param_status, $param_id);
+
+            //set parameters
+            $param_status = $status;
+            $param_id = $id;
+
+            // Execute the prepared statement
+            mysqli_stmt_execute($stmt);
+        }
+        else
+        {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
     }
+
     if ($type == 'delete')
     {
         $id = trim($_GET['id']);
+        
+        //prepare a select statement
+        $sql = "DELETE FROM product WHERE id = ?";
+        if($stmt = mysqli_prepare($db_connect, $sql))
+        {
+            //Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $param_id);
 
-        $delete_sql = "DELETE FROM product WHERE id='$id'";
-        mysqli_query($db_connect, $delete_sql);
+            //set parameters
+            $param_id = $id;
+
+            // Execute the prepared statement
+            mysqli_stmt_execute($stmt);
+        }
+        else
+        {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+
     }
 
 }

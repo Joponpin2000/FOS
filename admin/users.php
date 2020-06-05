@@ -14,9 +14,27 @@ if (isset($_GET['type']) && trim($_GET['type']) != '')
     if ($type == 'delete')
     {
         $id = trim($_GET['id']);
+        //prepare a select statement
+        $sql = "DELETE FROM users WHERE id = ?";
+        if($stmt = mysqli_prepare($db_connect, $sql))
+        {
+            //Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $param_id);
 
-        $delete_sql = "DELETE FROM users WHERE id='$id'";
-        mysqli_query($db_connect, $delete_sql);
+            //set parameters
+            $param_id = $id;
+
+            // Execute the prepared statement
+            mysqli_stmt_execute($stmt);
+        }
+        else
+        {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+
     }
 
 }

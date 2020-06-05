@@ -25,31 +25,48 @@ $image_required = 'required';
 
 if (isset($_GET['id']) && (trim($_GET['id']) != ''))
 {
-    $image_required = '';
-    $id = trim($_GET['id']);
-    $sql = "SELECT * FROM product WHERE id='$id'";
-    $result = mysqli_query($db_connect, $sql);
-    $check = mysqli_num_rows($result);
-    if ($check > 0)
+    // Prepare an update statement
+    $sql = "SELECT * FROM product WHERE id = ? ";
+    if ($stmt = mysqli_prepare($db_connect, $sql))
     {
-        $row = mysqli_fetch_assoc($result);
-        $categories_id = $row['categories_id'];    
-        $name = $row['name'];    
-        $mrp = $row['mrp'];    
-        $price = $row['price'];    
-        $qty = $row['qty'];    
-        $image = $row['image'];    
-        $short_desc = $row['short_desc'];    
-        $description = $row['description'];    
-        $meta_title = $row['meta_title'];    
-        $meta_desc = $row['meta_desc'];    
-        $meta_keyword = $row['meta_keyword'];    
+        $image_required = '';
+        $id = trim($_GET['id']);
+    
+        // SET parameters
+        mysqli_stmt_bind_param($stmt, "i", $param_id);
+        $param_id = $id;
+        
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt))
+        {
+            $result = mysqli_stmt_get_result($stmt);
+            if (mysqli_num_rows($result) == 1)
+            {
+                $row = mysqli_fetch_assoc($result);
+                $categories_id = $row['categories_id'];    
+                $name = $row['name'];    
+                $mrp = $row['mrp'];    
+                $price = $row['price'];    
+                $qty = $row['qty'];    
+                $image = $row['image'];    
+                $short_desc = $row['short_desc'];    
+                $description = $row['description'];    
+                $meta_title = $row['meta_title'];    
+                $meta_desc = $row['meta_desc'];    
+                $meta_keyword = $row['meta_keyword'];    
+            }
+            else
+            {
+                header("location: categories.php");
+                die();            
+            }
+        }
+        else
+        {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
     }
-    else
-    {
-        header("location: product.php");
-        die();    
-    }
+    mysqli_stmt_close($stmt);
 }
 
 
@@ -67,27 +84,41 @@ if(isset($_POST['submit']))
     $meta_keyword = trim($_POST['meta_keyword']);
 
 
-    $result = mysqli_query($db_connect, "SELECT * FROM product WHERE name='$name' ");
-    $check = mysqli_num_rows($result);
-    if ($check > 0)
+    // Prepare an update statement
+    $sql = "SELECT * FROM product WHERE name = ?";
+    if ($stmt = mysqli_prepare($db_connect, $sql))
     {
-        if (isset($_GET['id']) && (trim($_GET['id']) != ''))
+        // SET parameters
+        mysqli_stmt_bind_param($stmt, "s", $param_name);
+        $param_name = $name;
+        
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt))
         {
-            $getData = mysqli_fetch_assoc($result);
-            if($id == $getData['id'])
+            $result = mysqli_stmt_get_result($stmt);
+            if (mysqli_num_rows($result) == 1)
             {
-
-            }
-            else
-            {
-                $msg = "Product already exist";
+                if (isset($_GET['id']) && (trim($_GET['id']) != ''))
+                {
+                    $row = mysqli_fetch_assoc($result);
+                    if($id != $row['id'])
+                    {
+                        $msg = "Product already exist";
+                    }
+                }
+                else
+                {
+                    $msg = "Product already exist";
+                }
             }
         }
         else
         {
-            $msg = "Product already exist";
+            echo "Oops! Something went wrong. Please try again later.";
         }
     }
+    mysqli_stmt_close($stmt);
+
 
     if ($_FILES['image']['type'] != '' && $_FILES['image']['type'] != 'image/png' && $_FILES['image']['type'] != 'image/jpg' && $_FILES['image']['type'] != 'image/jpeg')
     {
@@ -103,30 +134,131 @@ if(isset($_POST['submit']))
             {
                 $image = rand(111111111, 999999999) . '_' . $_FILES['image']['name'];
                 move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH . $image);
-                $update_sql = "UPDATE product SET 
-                categories_id='$categories_id', name='$name', mrp='$mrp', price='$price', qty='$qty', short_desc='$short_desc',
-                 description='$description', meta_title='$meta_title', meta_desc='$meta_desc', meta_keyword='$meta_keyword', image='$image'
-                 WHERE id='$id' ";
+
+                //prepare a select statement
+                $sql = "UPDATE product SET categories_id = ?, name = ?, mrp = ?, price = ?,
+                qty = ?, short_desc = ?, description = ?, meta_title = ?, meta_desc = ?,
+                meta_keyword = ?, image = ? WHERE id=? ";
+                
+                if($stmt = mysqli_prepare($db_connect, $sql))
+                {
+                    //Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param($stmt, "isddissssssi", $param_cat, $param_name, $param_mrp, $param_price, $param_qty,
+                $param_short_desc, $param_description, $param_meta_title, $param_meta_desc, $param_meta_keyword, $param_image,
+                $param_id);
+
+                    //set parameters
+                    $param_cat = $categories_id;
+                    $param_name = $name;
+                    $param_mrp = $mrp;
+                    $param_price = $price;
+                    $param_qty = $qty;
+                    $param_short_desc = $short_desc;
+                    $param_description = $description;
+                    $param_meta_title = $meta_title;
+                    $param_meta_desc = $meta_desc;
+                    $param_meta_keyword = $meta_keyword;
+                    $param_image = $image;
+                    $param_id = $id;
+
+                    // Execute the prepared statement
+                    mysqli_stmt_execute($stmt);
+                }
+
+                else
+                {
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
+
+                // Close statement
+                mysqli_stmt_close($stmt);
             }
+
             else
             {
-                $update_sql = "UPDATE product SET 
-                categories_id='$categories_id', name='$name', mrp='$mrp', price='$price', qty='$qty', short_desc='$short_desc',
-                 description='$description', meta_title='$meta_title', meta_desc='$meta_desc', meta_keyword='$meta_keyword'
-                 WHERE id='$id' ";
+                //prepare a select statement
+                $sql = "UPDATE product SET categories_id = ?, name = ?, mrp = ?, price = ?,
+                qty = ?, short_desc = ?, description = ?, meta_title = ?, meta_desc = ?,
+                meta_keyword = ? WHERE id=? ";
+                
+                if($stmt = mysqli_prepare($db_connect, $sql))
+                {
+                    //Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param($stmt, "isddisssssi", $param_cat, $param_name, $param_mrp, $param_price, $param_qty,
+                $param_short_desc, $param_description, $param_meta_title, $param_meta_desc, $param_meta_keyword, 
+                $param_id);
+
+                    //set parameters
+                    $param_cat = $categories_id;
+                    $param_name = $name;
+                    $param_mrp = $mrp;
+                    $param_price = $price;
+                    $param_qty = $qty;
+                    $param_short_desc = $short_desc;
+                    $param_description = $description;
+                    $param_meta_title = $meta_title;
+                    $param_meta_desc = $meta_desc;
+                    $param_meta_keyword = $meta_keyword;
+                    $param_id = $id;
+
+                    // Execute the prepared statement
+                    mysqli_stmt_execute($stmt);
+                }
+
+                else
+                {
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
+
+                // Close statement
+                mysqli_stmt_close($stmt);
             }
-            mysqli_query($db_connect, $update_sql);
         }
         else
         {
             $image = rand(111111111, 999999999) . '_' . $_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH . $image);
+            
+            //prepare a select statement
             $sql = "INSERT INTO product(categories_id, name, mrp, price, qty, short_desc, description, meta_title,
              meta_desc, meta_keyword, status, image)
-             VALUES('$categories_id', '$name', '$mrp', '$price', '$qty', '$short_desc', '$description', '$meta_title',
-              '$meta_desc', '$meta_keyword', 1, '$image')";
-            mysqli_query($db_connect, $sql);    
-        }
+             VALUES(?, ?, ?, ?, ?, ?, ?, ?,
+              ?, ?, ?, ?)";
+            
+            if($stmt = mysqli_prepare($db_connect, $sql))
+            {
+                //Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "isddisssssis", $param_cat, $param_name, $param_mrp, $param_price, $param_qty,
+                $param_short_desc, $param_description, $param_meta_title, $param_meta_desc, $param_meta_keyword, 
+                $param_status, $param_image);
+
+                //set parameters
+                $param_cat = $categories_id;
+                $param_name = $name;
+                $param_mrp = $mrp;
+                $param_price = $price;
+                $param_qty = $qty;
+                $param_short_desc = $short_desc;
+                $param_description = $description;
+                $param_meta_title = $meta_title;
+                $param_meta_desc = $meta_desc;
+                $param_meta_keyword = $meta_keyword;
+                $param_status = 1;
+                $param_image = $image;
+
+                // Execute the prepared statement
+                mysqli_stmt_execute($stmt);
+            }
+
+            else
+            {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+
+}
         header("location: product.php");
         die();        
     }

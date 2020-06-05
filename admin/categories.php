@@ -30,7 +30,7 @@ if (isset($_GET['type']) && trim($_GET['type']) != '')
         if($stmt = mysqli_prepare($db_connect, $sql))
         {
             //Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "si", $param_status, $param_id);
+            mysqli_stmt_bind_param($stmt, "ii", $param_status, $param_id);
 
             //set parameters
             $param_status = $status;
@@ -52,9 +52,6 @@ if (isset($_GET['type']) && trim($_GET['type']) != '')
     if ($type == 'delete')
     {
         $id = trim($_GET['id']);
-
-        $delete_sql = "DELETE FROM categories WHERE id='$id'";
-        mysqli_query($db_connect, $delete_sql);
         
         //prepare a select statement
         $sql = "DELETE FROM categories WHERE id = ?";

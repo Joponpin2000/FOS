@@ -94,29 +94,29 @@ if(isset($_POST['submit']))
         if (isset($_GET['id']) && (trim($_GET['id']) != ''))
         {
             
-        //prepare a select statement
-        $sql = "UPDATE categories SET categories=? WHERE id=? ";
-        if($stmt = mysqli_prepare($db_connect, $sql))
-        {
-            //Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "si", $param_cat, $param_id);
+            //prepare a select statement
+            $sql = "UPDATE categories SET categories=? WHERE id=? ";
+            if($stmt = mysqli_prepare($db_connect, $sql))
+            {
+                //Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "si", $param_cat, $param_id);
 
-            //set parameters
-            $param_cat = $category;
-            $param_id = $id;
+                //set parameters
+                $param_cat = $category;
+                $param_id = $id;
 
-            // Execute the prepared statement
-            mysqli_stmt_execute($stmt);
+                // Execute the prepared statement
+                mysqli_stmt_execute($stmt);
+            }
+            else
+            {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
         }
-        else
-        {
-            echo "Oops! Something went wrong. Please try again later.";
-        }
-
-        // Close statement
-        mysqli_stmt_close($stmt);
-
-        }
+        
         else
         {
             //prepare a select statement
