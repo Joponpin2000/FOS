@@ -256,7 +256,7 @@
     transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
 }
-.slide-text > a.btn-primary{
+.slide-text > a.btn-info{
     color: #ffffff;
     cursor: pointer;
     font-weight: 400;
@@ -343,7 +343,7 @@
         margin-bottom: 10px;
     }
     .slide-text > a.btn-default, 
-    .slide-text > a.btn-primary {
+    .slide-text > a.btn-info {
         font-size: 10px;
         line-height: 10px;
         margin-right: 10px;

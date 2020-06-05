@@ -49,7 +49,7 @@ include_once 'functions.php';
         <div class="container" id="header-con">
             <div class="row">
                 <header class="top-navbar">
-                    <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top navbar-dark bg-light">
+                <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #7386D5">
                         <div class="container-fluid">
                             <a class="navbar-brand" style="color: white;">Food Ordering System</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +58,7 @@ include_once 'functions.php';
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.php">Home</a>
+                                        <a class="nav-link" href="home.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="active nav-link" href="menu.php">Food Menu</a>
@@ -124,36 +124,12 @@ include_once 'functions.php';
             <div class="carousel-inner" style="height:100%;">
                 <div class="carousel-item active" style="height:100%;">
                     <img src="images/28.jpg" alt="Pizza" class="d-block w-100" style="height:100%;">
-                    <div class="carousel-caption" style="height:70%;">
-                        <h2 style="color:black; font-family: 'Lobster', cursive; font-weight:light;  font-size:25px;"">Find your favorite delicious hot food!</h2>
-                        <p>
-                            <input type="text" name="food-search" class="form-control" id="food-search" placeholder="I would like to eat..." title="Type in a food" />
-                        </p>
-                        <div id="result" style="position:fixed;top:300; right:500;z-index: 3000;width:350px;background:white;"></div>
-                        <a href="menu.php" role="button" class="btn btn-danger">Search</a>
-                    </div>
                 </div>
                 <div class="carousel-item" style="height:100%;">
                     <img src="images/30.png" alt="Pizza" class="d-block w-100" style="height:100%;">
-                    <div class="carousel-caption" style="height:70%;">
-                        <h2 style="color:black; font-family: 'Lobster', cursive; font-weight:light;  font-size:25px;"">Search by food name!</h2>
-                        <p>
-                            <input type="text" name="food-search" class="form-control" id="food-search" placeholder="I would like to eat..." title="Type in a food" />
-                        </p>
-                        <div id="result" style="position:fixed;top:300; right:500;z-index: 3000;width:350px;background:white;"></div>
-                        <a href="menu.php" role="button" class="btn btn-danger">Search</a>
-                    </div>
                 </div>
                 <div class="carousel-item" style="height:100%;">
                     <img src="images/33.jpg" alt="Pizza" class="d-block w-100" style="height:100%;">
-                    <div class="carousel-caption" style="height:70%;">
-                        <h2 style="color:black; font-family: 'Lobster', cursive; font-weight:light;  font-size:25px;"">Search food!</h2>
-                        <p>
-                            <input type="text" name="food-search" class="form-control" id="food-search" placeholder="I would like to eat..." title="Type in a food" />
-                        </p>
-                        <div id="result" style="position:fixed;top:300; right:500;z-index: 3000;width:350px;background:white;"></div>
-                        <a href="menu.php" role="button" class="btn btn-danger">Search</a>
-                    </div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -167,7 +143,7 @@ include_once 'functions.php';
 
         <!-- Breadcrumb -->
         <ul class="breadcrumb">
-            <li><a href="index.php" style="color: red;">Home</a></li>
+            <li><a href="home.php" style="color: #7386D5;">Home</a></li>
             <li><a href="#">Menu</a></li>
             <li>Food Details</li>
 
@@ -209,7 +185,7 @@ include_once 'functions.php';
                                     <h5><b>Rs. 90</b></h5>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-danger order-button" role="button">
+                                    <a href="#" class="btn btn-info order-button" role="button">
                                         Order Now
                                     </a>    
                                 </div>
@@ -225,7 +201,7 @@ include_once 'functions.php';
                                     <h5><b>Rs. 90</b></h5>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-danger order-button" role="button">
+                                    <a href="#" class="btn btn-info order-button" role="button">
                                         Order Now
                                     </a>    
                                 </div>
@@ -241,7 +217,7 @@ include_once 'functions.php';
                                     <h5><b>Rs. 90</b></h5>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-danger order-button" role="button">
+                                    <a href="#" class="btn btn-info order-button" role="button">
                                         Order Now
                                     </a>    
                                 </div>
@@ -258,7 +234,7 @@ include_once 'functions.php';
                                     <h5><b>Rs. 90</b></h5>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-danger order-button" role="button">
+                                    <a href="#" class="btn btn-info order-button" role="button">
                                         Order Now
                                     </a>    
                                 </div>
@@ -274,7 +250,7 @@ include_once 'functions.php';
                                     <h5><b>Rs. 90</b></h5>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-danger order-button" role="button">
+                                    <a href="#" class="btn btn-info order-button" role="button">
                                         Order Now
                                     </a>    
                                 </div>
@@ -290,7 +266,7 @@ include_once 'functions.php';
                                     <h5><b>Rs. 90</b></h5>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-danger order-button" role="button">
+                                    <a href="#" class="btn btn-info order-button" role="button">
                                         Order Now
                                     </a>    
                                 </div>
@@ -328,7 +304,7 @@ include_once 'functions.php';
                         <h6>Total</h6>
                         <h5><b>Rs. 220</b></h5>
                         <p>Free shipping</p>
-                        <a href="#" class="btn btn-danger order-button" role="button">
+                        <a href="#" class="btn btn-info order-button" role="button">
                             Order Now
                         </a>
                     </div>

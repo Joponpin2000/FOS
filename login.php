@@ -9,7 +9,7 @@ require_once "functions.php";
 //check if the user is already logged in, if yes then redirect him to welcome page
 if($loggedin)
     {
-        header("location: index.php");
+        header("location: home.php");
         exit;
     }
 
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             $_SESSION["username"] = $username;
 
                             // Redirect user to home page
-                            header("location: index.php");
+                            header("location: home.php");
                         }
                         else
                         {
@@ -152,7 +152,7 @@ mysqli_close($db_connect);
             <div class="container" id="header-con">
             <div class="row">
                 <header class="top-navbar">
-                    <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top navbar-dark bg-light">
+                <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #7386D5">
                         <div class="container-fluid">
                             <a class="navbar-brand" style="color: white;">Food Ordering System</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -161,7 +161,7 @@ mysqli_close($db_connect);
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.php">Home</a>
+                                        <a class="nav-link" href="home.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -220,7 +220,7 @@ mysqli_close($db_connect);
 
             <!-- Breadcrumb -->
             <ul class="breadcrumb">
-                <li><a href="index.php">Home</a></li>
+                <li><a href="home.php">Home</a></li>
                 <li><a href="#">login Page</a></li>
                 <li>Login</li>
 
@@ -246,10 +246,10 @@ mysqli_close($db_connect);
                                 </div>
                                 <div class="form-group loginform">
                                     <div class="pull-left">
-                                        <input type="submit" class="btn btn-danger" value="Login" />
+                                        <input type="submit" class="btn btn-info" value="Login" />
                                     </div>
                                     <div class="pull-right">
-                                        <a href="signup.php" class="btn btn-danger" role="button">Register</a>
+                                        <a href="signup.php" class="btn btn-info" role="button">Register</a>
                                     </div>
                                 </div>
                             </form>
