@@ -123,10 +123,6 @@ mysqli_close($db_connect);
 
     </head>
     <body>
-        <!--Loader-->
-        
-
-        <div class="animate-bottom" id="loadbody">
             <div class="center-block" style="margin: 100px auto; width: 70%;">
                 <div class="container">
                     <div class="row">
@@ -150,7 +146,6 @@ mysqli_close($db_connect);
                     </div>
                 </div>    
             </div>
-        </div>
 
         <div class="copyrights">
             <div class="container">

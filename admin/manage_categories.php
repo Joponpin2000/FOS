@@ -14,20 +14,39 @@ if(!isset($_SESSION['admin']))
 
 if (isset($_GET['id']) && (trim($_GET['id']) != ''))
 {
+
+
     $id = trim($_GET['id']);
-    $sql = "SELECT * FROM categories WHERE id='$id'";
-    $result = mysqli_query($db_connect, $sql);
-    $check = mysqli_num_rows($result);
-    if ($check > 0)
+
+    // Prepare an update statement
+    $sql = "SELECT * FROM categories WHERE id = ? ";
+    if ($stmt = mysqli_prepare($db_connect, $sql))
     {
-        $row = mysqli_fetch_assoc($result);
-        $category = $row['categories'];    
+        // SET parameters
+        mysqli_stmt_bind_param($stmt, "i", $param_id);
+        $param_id = $id;
+        
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt))
+        {
+            $result = mysqli_stmt_get_result($stmt);
+            if (mysqli_num_rows($result) == 1)
+            {
+                $row = mysqli_fetch_assoc($result);
+                $category = $row['categories'];
+            }
+            else
+            {
+                header("location: categories.php");
+                die();            
+            }
+        }
+        else
+        {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
     }
-    else
-    {
-        header("location: categories.php");
-        die();    
-    }
+    mysqli_stmt_close($stmt);
 }
 
 
@@ -35,37 +54,92 @@ if(isset($_POST['submit']))
 {
     $category = trim($_POST['category']);
 
-    $result = mysqli_query($db_connect, "SELECT * FROM categories WHERE categories='$category'");
-    $check = mysqli_num_rows($result);
-    if ($check > 0)
+    // Prepare an update statement
+    $sql = "SELECT * FROM categories WHERE categories = ?";
+    if ($stmt = mysqli_prepare($db_connect, $sql))
     {
-        if (isset($_GET['id']) && (trim($_GET['id']) != ''))
+        // SET parameters
+        mysqli_stmt_bind_param($stmt, "s", $param_cat);
+        $param_cat = $category;
+        
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt))
         {
-            $getData = mysqli_fetch_assoc($result);
-            if($id == $getData['id'])
+            $result = mysqli_stmt_get_result($stmt);
+            if (mysqli_num_rows($result) == 1)
             {
-
-            }
-            else
-            {
-                $msg = "Category already exist";
+                if (isset($_GET['id']) && (trim($_GET['id']) != ''))
+                {
+                    $row = mysqli_fetch_assoc($result);
+                    if($id != $row['id'])
+                    {
+                        $msg = "Category already exist";
+                    }
+                }
+                else
+                {
+                    $msg = "Category already exist";
+                }
             }
         }
         else
         {
-            $msg = "Category already exist";
+            echo "Oops! Something went wrong. Please try again later.";
         }
     }
+    mysqli_stmt_close($stmt);
+
     if ($msg == "")
     {
         if (isset($_GET['id']) && (trim($_GET['id']) != ''))
         {
-            mysqli_query($db_connect, "UPDATE categories SET categories='$category' WHERE id='$id'");
+            
+        //prepare a select statement
+        $sql = "UPDATE categories SET categories=? WHERE id=? ";
+        if($stmt = mysqli_prepare($db_connect, $sql))
+        {
+            //Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "si", $param_cat, $param_id);
+
+            //set parameters
+            $param_cat = $category;
+            $param_id = $id;
+
+            // Execute the prepared statement
+            mysqli_stmt_execute($stmt);
         }
         else
         {
-            $sql = "INSERT INTO categories(categories, status) VALUES('$category', '1')";
-            mysqli_query($db, $sql);    
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+
+        }
+        else
+        {
+            //prepare a select statement
+            $sql = "INSERT INTO categorieS(categories, status) VALUES(?, ?)";
+            if($stmt = mysqli_prepare($db_connect, $sql))
+            {
+                //Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "si", $param_cat, $param_status);
+
+                //set parameters
+                $param_cat = $category;
+                $param_status = '1';
+
+                // Execute the prepared statement
+                mysqli_stmt_execute($stmt);
+            }
+            else
+            {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
         }
         header("location: categories.php");
         die();        
@@ -106,12 +180,7 @@ if(isset($_POST['submit']))
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
     </head>
-    <body onload="myFunction()">
-
-        <div id="loader"></div>
-        
-
-        <div id="myDiv" class="animate-bottom">
+    <body>
             <div class="wrapper">
                 <nav id="sidebar">
                     <div class="sidebar-header">
@@ -174,10 +243,6 @@ if(isset($_POST['submit']))
 
 
             <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
-
-
-
-        </div>
 
 
         <!-- ALL JS FILES -->
