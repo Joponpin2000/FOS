@@ -127,7 +127,7 @@ mysqli_close($db_connect);
                 <div class="container">
                     <div class="row">
                             <div class="col-sm-12 col-md-6 col-md-6" style="padding: 10px;">
-                                <h4>Food Ordering System | Admin Login</h4>
+                                <h4><span style="color: #7386D5;">Food Ordering System</span> | Admin Login</h4>
                             </div>
                             <div class="col-sm-12 col-md-6 col-md-6" style="background-color: white; padding: 10px;">
                                 <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -139,8 +139,8 @@ mysqli_close($db_connect);
                                         <input type="password" class="form-control" name="password" value="<?php echo $password; ?>" required/>
                                         <span class="help-block" style="color:red;"><?php echo $password_err; ?></span>
                                     </div>
-                                    <button type="submit" class="btn btn-warning btn-block">Submit</button>
-                                    <a href="" class="pull-left" style="color: rgb(127, 168, 255); margin-top: 10px;">Forgot Password?</a>
+                                    <button type="submit" style="background-color: #7386D5; border-color: #7386D5" class="btn btn-warning btn-block">Submit</button>
+                                    <a href="" class="pull-left" style="color: red;">Forgot Password?</a>
                                 </form>
                             </div>
                     </div>

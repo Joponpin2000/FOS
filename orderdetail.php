@@ -302,17 +302,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a>Admin</a></h6>
-                        <p><a href="
-                            <?php
-                            if($loggedin)
-                            {
-                                echo 'admin/adminlogin.php';
-                            }
-                            else
-                            {
-                                echo 'login.php';
-                            }
-                            ?>">Admin</a></p>
+                        <p><a href="admin/adminlogin.php">Admin</a></p>
                     </div>
                 </div>
                 </div>
