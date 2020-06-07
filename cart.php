@@ -123,12 +123,13 @@ if($loggedin)
                         <div class="container-fluid">
                             <a class="navbar-brand" style="color: white;">Food Ordering System</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
+                                                                <span style="color: #7386D5;" class="navbar-toggler-icon">&#9776;</span>
+
                             </button>    
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Home</a>
+                                        <a class="nav-link" href="index.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -137,9 +138,6 @@ if($loggedin)
                                     if($loggedin)
                                     {
                                         echo <<<END
-                                        <li class="nav-item">
-                                        <a class="nav-link" href="trackorder.php">My Orders</a>
-                                        </li>
                                         <li class="nav-item">
                                             <a class="active nav-link" href="cart.php">Cart</a>
                                         </li>
@@ -163,9 +161,6 @@ if($loggedin)
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="login.php">Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="login.php">Track Order</a>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">My Account </a>
@@ -222,7 +217,7 @@ if($loggedin)
 
         <!-- Breadcrumb -->
         <ul class="breadcrumb">
-            <li><a href="home.php" style="color: #7386D5;">Home</a></li>
+            <li><a href="index.php" style="color: #7386D5;">Home</a></li>
             <li><a href="#">Cart</a></li>
             <li>Cart Details</li>
         </ul>
@@ -236,7 +231,7 @@ if($loggedin)
                     <div class="sidenav">
                         <h5 style="background-color: #7386D5; height: auto; text-align: center; margin: 0 auto;">Food Categories</h5>
                         <a href="">Italian</a>
-                        <a href="">Thai></a>
+                        <a href="">Thai</a>
                         <a href="">South Italian</a>
                         <a href="">North Indian</a>
                         <a href="">Desserts</a>
@@ -247,58 +242,57 @@ if($loggedin)
                 <?php
                 $total = 0;
 
-    if(isset($_SESSION["orders"]) && count($_SESSION["orders"]) > 0)
-    {
-        ?>
-
-                <div class="col-sm-6 col-md-6 col-lg-6 inner-section">
-                    <h2>Your Orders for delicious foods</h2>
-                <div class="row">
-                    <div class="col-sm-12 col-md-8 col-lg-8">
-            <form method="post" action="cart.php">
-
-        <?php
-            foreach($_SESSION["orders"] as $food_id)
-            {
-                $query = 'SELECT * FROM foods WHERE id = ' . $food_id . '';
-                $result = mysqli_query($db_connect, $query);
-                while($row=mysqli_fetch_array($result))
+                if(isset($_SESSION["orders"]) && count($_SESSION["orders"]) > 0)
                 {
-                    $product_name = $row['foodname'];
-                    $product_price = $row['price'];
-                    $product_code = $row['id'];
-                    $product_description = $row['description'];
-                    $product_file = $row['filepath'];
-        ?>
+                    ?>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 inner-section">
+                        <h2>Your Orders for delicious foods</h2>
                         <div class="row">
-                            <div class="col-sm-12 col-lg-8 col-md-8">
-                                <div class="row">
-                                    <div class="col-sm-4 col-md-4 col-lg-4">
-                                        <img src="<?php echo $product_file; ?>" alt="<?php echo $product_name; ?> image" style="height:60%;" />
-                                    </div>
-                                    <div class="col-sm-5 col-md-5 col-lg-5">
-                                        <h5><?php echo $product_name; ?></h5>
-                                        <p><?php echo $product_description; ?></p>
-                                    </div>
-                                    <div class="col-sm-3 col-md-3 col-lg-3">
-                                        <p><?php echo '$ ' . $product_price; ?></p>
-                                    </div>
-                                </div>
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <form method="post" action="cart.php">
+
+                                    <?php
+                                    foreach($_SESSION["orders"] as $food_id)
+                                    {
+                                        $query = 'SELECT * FROM foods WHERE id = ' . $food_id . '';
+                                        $result = mysqli_query($db_connect, $query);
+                                        while($row=mysqli_fetch_array($result))
+                                        {
+                                            $product_name = $row['foodname'];
+                                            $product_price = $row['price'];
+                                            $product_code = $row['id'];
+                                            $product_description = $row['description'];
+                                            $product_file = $row['filepath'];
+                                            ?>
+                                            <div class="row" style="height: 100px; margin-bottom: 50px; ">
+                                                <div class="col-sm-12 col-lg-12 col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-sm-4 col-md-4 col-lg-4">
+                                                            <img src="<?php echo $product_file; ?>" alt="<?php echo $product_name; ?> image" style="height:60%;" />
+                                                        </div>
+                                                        <div class="col-sm-6 col-md-6 col-lg-6">
+                                                            <h5><?php echo $product_name; ?></h5>
+                                                            <p><?php echo $product_description?></p>
+                                                        </div>
+                                                        <div class="col-sm-2 col-md-2 col-lg-2">
+                                                            <h5 style="color: #7386D5;margin-top: 20px;"><b><?php echo '$ ' . $product_price; ?></b></h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            $total = ($total + $product_price);    
+                                        }
+                                    }
+                                    ?>
+                                </form>
                             </div>
                         </div>
-                    <?php
-                    $total = ($total + $product_price);    
-                }
-            }
-        ?>
-        </form>
-        </div>
-
                     </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-lg-3 flo" style="width:100%;">
+                    <div class="col-sm-6 col-md-3 col-lg-3 flo" style="width:100%;">
                         <div class="sidenav">
-                            <p class="navbar-text" style="background-color: rgba(231, 238, 243, 0.4);">Your Shopping Cart</p>
+                            <p class="navbar-text" style="background-color: #7386D5">Your Shopping Cart</p>
                             <form role="form" action="<?php echo
                             htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="cart" onsubmit=" <?php $_SESSION['order_num'] = rand(); $_SESSION['order_date'] = date('l F jS, Y - g:ia', time());   ?>alert('Order has been placed. Your order number is ' + $_SESSION['order_num']);">
                                 <div class="form-group">
@@ -326,41 +320,40 @@ if($loggedin)
                                     <p>TOTAL</p>
                                     <p><b>$ <?php echo $total; ?></b></p>
                                     <small>Free Shipping</small>
-                                    <button type="submit" class="btn btn-info" style="background: #7386D5; border-color:  #7386D5">Place Order</button>    
+                                    <button type="submit" class="btn btn-warning" style="background: #7386D5; border-color:  #7386D5">Place Order</button>    
                                 </div>
                             </form>
                         </div>
                     </div>
                     <?php
 
-                    }
-                    else {
-                    ?>
+                }
+                else
+                {
+                ?>
                     <div class="col-sm-6 col-md-9 col-lg-9 inner-section">
-                    <h2>Your Orders for delicious foods</h2>
-
-                    <input type="text" style="width:50%; background-color: white; padding-left: 20px;" placeholder="Your cart is empty!" disabled>
+                        <h2>Your Orders for delicious foods</h2>
+                        <input type="text" style="width:50%; background-color: white; padding-left: 20px;" placeholder="Your cart is empty!" disabled>
                     </div>
-                    <?php
-                    }
-
-                    ?>
-
+                <?php
+                }
+                ?>
+            </div>
         </section>
 
         <section id="bottom-section">
             <div class="container">
                 <div class="row" id="second-row">
-                    <div class="col-sm-6 col-md-2">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a >Food Ordering System</a></h6>
                         <p><a >Order delivery</a></p>
                     </div>
-                    <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a>About Us</a></h6>
-                        <p><a href="about.php">About Us</a></p>
+                        <p><a>About Us</a></p>
                         <p><a >Contact Us</a></p>
                     </div>
-                    <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
                             <h6><a>My Account</a></h6>
                             <p><a href="
                             <?php
@@ -386,21 +379,7 @@ if($loggedin)
                             ?>">My Cart</a></p>
                              
                         </div>
-                        <div class="col-sm-6 col-md-2">
-                            <h6><a>Track Order</a></h6>
-                            <p><a href="
-                            <?php
-                            if($loggedin)
-                            {
-                                echo 'trackorder.php';
-                            }
-                            else
-                            {
-                                echo 'login.php';
-                            }
-                            ?>">Track Order</a></p>
-                        </div>
-                    <div class="col-sm-6 col-md-2">
+                        <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a>Admin</a></h6>
                         <p><a href="
                             <?php
@@ -414,6 +393,7 @@ if($loggedin)
                             }
                             ?>">Admin</a></p>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

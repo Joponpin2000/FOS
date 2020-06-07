@@ -5,14 +5,14 @@ include_once 'functions.php';
 if ($_SERVER["REQUEST_METHOD"] =="POST")
 {
 
-    if(isset($_POST['cancel']))
+    if (isset($_POST['submit']))
     {
-        $_SESSION['orders'] = '';
+            
+        if(isset($_POST['cancel']))
+        {
+            $_SESSION['orders'] = '';
+        }
     }
-
-
-
-
 }
 
 ?>
@@ -65,12 +65,13 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                         <div class="container-fluid">
                             <a class="navbar-brand" style="color: white;">Food Ordering System</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
+                                                                <span style="color: #7386D5;" class="navbar-toggler-icon">&#9776;</span>
+
                             </button>    
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Home</a>
+                                        <a class="nav-link" href="index.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -79,9 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                                     if($loggedin)
                                     {
                                         echo <<<END
-                                        <li class="nav-item">
-                                        <a class="nav-link" href="trackorder.php">My Orders</a>
-                                        </li>
                                         <li class="nav-item">
                                             <a class="active nav-link" href="cart.php">Cart</a>
                                         </li>
@@ -105,9 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="login.php">Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="login.php">Track Order</a>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">My Account </a>
@@ -164,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
 
         <!-- Breadcrumb -->
         <ul class="breadcrumb">
-            <li><a href="home.php" style="color: red;">Home</a></li>
+            <li><a href="index.php" style="color: #7386D5;">Home</a></li>
             <li><a href="#">Cart</a></li>
             <li>Cart Details</li>
         </ul>
@@ -176,14 +171,12 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
             <div class="row">
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="sidenav">
-                        <h5 style="background-color: red; height: auto; text-align: center; margin: 0 auto;">Food Categories</h5>
-                        <a href="">Italian</a>
-                        <a href="">Thai></a>
-                        <a href="">South Italian</a>
-                        <a href="">North Indian</a>
+                        <h5 style="background-color: #7386D5; height: auto; text-align: center; margin: 0 auto;">Food Categories</h5>
                         <a href="">Desserts</a>
-                        <a href="">Starters</a>
-                        <a href="">Chinese</a>
+                            <a href="menu.php">Starters</a>
+                            <a href="menu.php">Italian</a>
+                            <a href="menu.php">Thai</a>
+                            <a href="menu.php">Locals</a>
                     </div>
                 </div>
                 <?php
@@ -193,11 +186,11 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                 {
                     ?>
 
-                <div class="col-sm-6 col-md-6 col-lg-6 inner-section">
-                    <h2>Your Orders for delicious foods</h2>
-                <div class="row">
-                    <div class="col-sm-12 col-md-8 col-lg-8">
-                        <form method="post" action="cart.php">
+<div class="col-sm-6 col-md-6 col-lg-6 inner-section">
+                        <h2>Your Orders for delicious foods</h2>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <form method="post" action="orderdetail.php">
 
                             <?php
                                 foreach($_SESSION["orders"] as $food_id)
@@ -215,15 +208,15 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                                             <div class="row">
                                                 <div class="col-sm-12 col-lg-8 col-md-8">
                                                     <div class="row">
-                                                        <div class="col-sm-4 col-md-4 col-lg-4">
+                                                    <div class="col-sm-4 col-md-4 col-lg-4">
                                                             <img src="<?php echo $product_file; ?>" alt="<?php echo $product_name; ?> image" style="height:60%;" />
                                                         </div>
-                                                        <div class="col-sm-5 col-md-5 col-lg-5">
+                                                        <div class="col-sm-6 col-md-6 col-lg-6">
                                                             <h5><?php echo $product_name; ?></h5>
-                                                            <p><?php echo $product_description; ?></p>
+                                                            <p><?php echo $product_description?></p>
                                                         </div>
-                                                        <div class="col-sm-3 col-md-3 col-lg-3">
-                                                            <p><?php echo '$ ' . $product_price; ?></p>
+                                                        <div class="col-sm-2 col-md-2 col-lg-2">
+                                                            <h5 style="color: #7386D5;margin-top: 20px;"><b><?php echo '$ ' . $product_price; ?></b></h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -247,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                     <p><b>Landmark: </b><?php echo $_SESSION['landmark']; ?></p>
                     <p><b>City: </b><?php echo $_SESSION['city']; ?></p>
                     <br /><hr />
-                    <a href="cart.php" type="button" style="background-color: red" class="btn btn-info">Edit</a>
+                    <a href="cart.php" type="button" style="background-color: #7386D5" class="btn btn-warning">Edit</a>
                     <button type="submit" class="btn btn-link">Cancel this order</button>
                 </form>
                 </div>
@@ -272,16 +265,16 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
         <section id="bottom-section">
             <div class="container">
                 <div class="row" id="second-row">
-                    <div class="col-sm-6 col-md-2">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a >Food Ordering System</a></h6>
                         <p><a >Order delivery</a></p>
                     </div>
-                    <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a>About Us</a></h6>
-                        <p><a href="about.php">About Us</a></p>
+                        <p><a>About Us</a></p>
                         <p><a >Contact Us</a></p>
                     </div>
-                    <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
                             <h6><a>My Account</a></h6>
                             <p><a href="
                             <?php
@@ -307,21 +300,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                             ?>">My Cart</a></p>
                              
                         </div>
-                        <div class="col-sm-6 col-md-2">
-                            <h6><a>Track Order</a></h6>
-                            <p><a href="
-                            <?php
-                            if($loggedin)
-                            {
-                                echo 'trackorder.php';
-                            }
-                            else
-                            {
-                                echo 'login.php';
-                            }
-                            ?>">Track Order</a></p>
-                        </div>
-                    <div class="col-sm-6 col-md-2">
+                        <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a>Admin</a></h6>
                         <p><a href="
                             <?php
@@ -335,6 +314,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                             }
                             ?>">Admin</a></p>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

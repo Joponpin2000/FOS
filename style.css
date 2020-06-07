@@ -94,7 +94,7 @@ a:hover {
 
 .navbar-right li a{
 	position: relative;
-	font-size: 18px;
+	font-size: 20px;
     display: inline-block;
 }
 .navbar-right li a,
@@ -160,11 +160,11 @@ a:hover {
 }
 
 .navbar-toggler:hover{
-	background: #eea412;
+	color: #ffffff;
 }
 
 .navbar-toggler:hover .icon-bar{
-	background: #ffffff;
+	color: #7386D5;
 }
 
 a {
@@ -174,6 +174,8 @@ a {
 
 /*======================================================================================================
 =========================END NAVIGATION======================================================================*/
+
+
 
 ul.breadcrumb {
     padding: 10px 16px;

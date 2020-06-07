@@ -207,7 +207,7 @@ if(isset($_POST['submit']))
                 <div id="content" style="padding-left: 20px; width: 100vw">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
-                            <button class="btn btn-info" type="button" id="sidebarCollapse" style="background: #7386D5;">&#9776;</button>
+                            <button class="btn btn-warning" type="button" id="sidebarCollapse" style="background: #7386D5;">&#9776;</button>
                         </div>
                     </nav>
                     <div class="container">
@@ -222,7 +222,7 @@ if(isset($_POST['submit']))
                                         <label for="category" class="form-control-label">Category</label>
                                         <input type="text" name="category" class="form-control" value="<?php echo $category ?>" placeholder="Enter Category name" required/>
                                     </div>
-                                    <button type="submit" name="submit" class="btn btn-info btn-block">Submit</button>
+                                    <button type="submit" name="submit" class="btn btn-warning btn-block">Submit</button>
                                     <span class="help-block" style="color:red;"><?php echo $msg; ?></span>
                                 </form>
                             </div>

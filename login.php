@@ -9,7 +9,7 @@ require_once "functions.php";
 //check if the user is already logged in, if yes then redirect him to welcome page
 if($loggedin)
     {
-        header("location: home.php");
+        header("location: index.php");
         exit;
     }
 
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             $_SESSION["username"] = $username;
 
                             // Redirect user to home page
-                            header("location: home.php");
+                            header("location: index.php");
                         }
                         else
                         {
@@ -156,12 +156,13 @@ mysqli_close($db_connect);
                         <div class="container-fluid">
                             <a class="navbar-brand" style="color: white;">Food Ordering System</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
+                                                                <span style="color: #7386D5;" class="navbar-toggler-icon">&#9776;</span>
+
                             </button>    
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Home</a>
+                                        <a class="nav-link" href="index.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -170,9 +171,6 @@ mysqli_close($db_connect);
                                     if($loggedin)
                                     {
                                         echo <<<END
-                                        <li class="nav-item">
-                                        <a class="nav-link" href="trackorder.php">My Orders</a>
-                                        </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.php">Cart</a>
                                         </li>
@@ -197,9 +195,6 @@ mysqli_close($db_connect);
                                         <li class="nav-item">
                                             <a class="active nav-link" href="login.php">Login</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="login.php">Track Order</a>
-                                        </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">My Account </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -220,7 +215,7 @@ mysqli_close($db_connect);
 
             <!-- Breadcrumb -->
             <ul class="breadcrumb">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#">login Page</a></li>
                 <li>Login</li>
 
@@ -246,10 +241,10 @@ mysqli_close($db_connect);
                                 </div>
                                 <div class="form-group loginform">
                                     <div class="pull-left">
-                                        <input type="submit" class="btn btn-info" value="Login" />
+                                        <input type="submit" class="btn btn-warning" value="Login" style="background-color: #7386D5; border-color: #7386D5" />
                                     </div>
                                     <div class="pull-right">
-                                        <a href="signup.php" class="btn btn-info" role="button">Register</a>
+                                        <a href="signup.php" class="btn btn-warning" role="button" style="background-color: #7386D5; border-color: #7386D5">Register</a>
                                     </div>
                                 </div>
                             </form>
@@ -271,16 +266,16 @@ mysqli_close($db_connect);
             <section id="bottom-section">
                 <div class="container">
                     <div class="row" id="second-row">
-                        <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-3 col-lg-3">
                             <h6><a >Food Ordering System</a></h6>
                             <p><a >Order delivery</a></p>
                         </div>
-                        <div class="col-sm-6 col-md-2">
+                        <div class="col-sm-6 col-md-3 col-lg-3">
                             <h6><a>About Us</a></h6>
-                            <p><a href="about.php">About Us</a></p>
+                            <p><a>About Us</a></p>
                             <p><a >Contact Us</a></p>
                         </div>
-                        <div class="col-sm-6 col-md-2">
+                        <div class="col-sm-6 col-md-3 col-lg-3">
                             <h6><a>My Account</a></h6>
                             <p><a href="
                             <?php
@@ -306,21 +301,7 @@ mysqli_close($db_connect);
                             ?>">My Cart</a></p>
                              
                         </div>
-                        <div class="col-sm-6 col-md-2">
-                            <h6><a>Track Order</a></h6>
-                            <p><a href="
-                            <?php
-                            if($loggedin)
-                            {
-                                echo 'trackorder.php';
-                            }
-                            else
-                            {
-                                echo 'login.php';
-                            }
-                            ?>">Track Order</a></p>
-                        </div>
-                    <div class="col-sm-6 col-md-2">
+                        <div class="col-sm-6 col-md-3 col-lg-3">
                         <h6><a>Admin</a></h6>
                         <p><a href="
                             <?php

@@ -130,12 +130,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         <div class="container-fluid">
                             <a class="navbar-brand" style="color: white;">Food Ordering System</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
+                                                                <span style="color: #7386D5;" class="navbar-toggler-icon">&#9776;</span>
+
                             </button>    
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Home</a>
+                                        <a class="nav-link" href="index.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -144,9 +145,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                                     if($loggedin)
                                     {
                                         echo <<<END
-                                        <li class="nav-item">
-                                        <a class="nav-link" href="trackorder.php">My Orders</a>
-                                        </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.php">Cart</a>
                                         </li>
@@ -171,9 +169,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                                         <li class="nav-item">
                                             <a class="nav-link" href="login.php">Login</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="login.php">Track Order</a>
-                                        </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">My Account </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -194,7 +189,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
         <!-- Breadcrumb -->
         <ul class="breadcrumb">
-            <li><a href="home.php" style="color: red;">Home</a></li>
+            <li><a href="index.php" style="color: #7386D5;">Home</a></li>
             <li>Change Password</li>
 
         </ul>
@@ -227,7 +222,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         </div>
                         <div class="form-group loginform">
                             <div>
-                                <button type="submit" class="btn btn-info">Change</button>
+                                <button type="submit" style="background-color: #7386D5; border-color: #7386D5;" class="btn btn-warning">Change</button>
                             </div>
                         </div>
                     </form>
@@ -249,7 +244,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 </div>
                 <div class="col-sm-6 col-md-2">
                     <h6><a>About Us</a></h6>
-                    <p><a href="about.php">About Us</a></p>
+                    <p><a>About Us</a></p>
                     <p><a >Contact Us</a></p>
                 </div>
                 <div class="col-sm-6 col-md-2">
@@ -277,20 +272,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             }
                             ?>">My Cart</a></p>
                              
-                        </div>
-                        <div class="col-sm-6 col-md-2">
-                            <h6><a>Track Order</a></h6>
-                            <p><a href="
-                            <?php
-                            if($loggedin)
-                            {
-                                echo 'trackorder.php';
-                            }
-                            else
-                            {
-                                echo 'login.php';
-                            }
-                            ?>">Track Order</a></p>
                         </div>
                     <div class="col-sm-6 col-md-2">
                         <h6><a>Admin</a></h6>

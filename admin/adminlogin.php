@@ -139,7 +139,7 @@ mysqli_close($db_connect);
                                         <input type="password" class="form-control" name="password" value="<?php echo $password; ?>" required/>
                                         <span class="help-block" style="color:red;"><?php echo $password_err; ?></span>
                                     </div>
-                                    <button type="submit" class="btn btn-success btn-block">Submit</button>
+                                    <button type="submit" class="btn btn-warning btn-block">Submit</button>
                                     <a href="" class="pull-left" style="color: rgb(127, 168, 255); margin-top: 10px;">Forgot Password?</a>
                                 </form>
                             </div>

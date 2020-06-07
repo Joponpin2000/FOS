@@ -141,7 +141,7 @@ $result = mysqli_query($db_connect, $sql);
                 <div id="content" style="padding-left: 20px; width: 100vw">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
-                            <button class="btn btn-info" type="button" id="sidebarCollapse" style="background: #7386D5;">&#9776;</button>
+                            <button class="btn btn-warning" type="button" id="sidebarCollapse" style="background: #7386D5;">&#9776;</button>
                         </div>
                     </nav>
                     <div class="title">

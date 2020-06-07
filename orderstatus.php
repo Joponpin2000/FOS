@@ -53,12 +53,13 @@ include_once 'functions.php';
                         <div class="container-fluid">
                             <a class="navbar-brand" style="color: white;">Food Ordering System</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
+                                                                <span style="color: #7386D5;" class="navbar-toggler-icon">&#9776;</span>
+
                             </button>    
                             <div class="navbar-collapse collapse justify-content-end" id="navbars-host">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Home</a>
+                                        <a class="nav-link" href="index.php">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="menu.php">Food Menu</a>
@@ -67,9 +68,6 @@ include_once 'functions.php';
                                     if($loggedin)
                                     {
                                         echo <<<END
-                                        <li class="nav-item">
-                                        <a class="nav-link" href="trackorder.php">My Orders</a>
-                                        </li>
                                         <li class="nav-item">
                                             <a class="active nav-link" href="cart.php">Cart</a>
                                         </li>
@@ -93,9 +91,6 @@ include_once 'functions.php';
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="login.php">Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="login.php">Track Order</a>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">My Account </a>
@@ -152,7 +147,7 @@ include_once 'functions.php';
 
         <!-- Breadcrumb -->
         <ul class="breadcrumb">
-            <li><a href="home.php" style="color: red;">Home</a></li>
+            <li><a href="index.php" style="color: #7386D5;">Home</a></li>
             <li><a href="#">Cart</a></li>
             <li>Cart Details</li>
         </ul>
@@ -164,14 +159,11 @@ include_once 'functions.php';
             <div class="row">
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="sidenav">
-                        <h5 style="background-color: red; height: auto; text-align: center; margin: 0 auto;">Food Categories</h5>
-                        <a href="">Italian</a>
-                        <a href="">Thai></a>
-                        <a href="">South Italian</a>
-                        <a href="">North Indian</a>
-                        <a href="">Desserts</a>
-                        <a href="">Starters</a>
-                        <a href="">Chinese</a>
+                        <h5 style="background-color: #7386D5; height: auto; text-align: center; margin: 0 auto;">Food Categories</h5>
+                        <a href="menu.php">Starters</a>
+                            <a href="menu.php">Italian</a>
+                            <a href="menu.php">Thai</a>
+                            <a href="menu.php">Locals</a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-9 col-lg-9">
@@ -184,10 +176,10 @@ include_once 'functions.php';
                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                     <h4>ORDER # <?php echo $_SESSION['order_num']; ?></h4>
                                     <p><b>Order Date: <?php echo $_SESSION['order_date']; ?></b></p>
-                                    <p>Waiting for restaurant confirmation.</p>
+                                    <p style="color: red">Waiting for restaurant confirmation.</p>
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-4">
-                                    <a href="orderdetail.php" type="button" class="btn btn-info">View Details</a>
+                                    <a href="orderdetail.php" style="background-color: #7386D5; border-color: #7386D5" type="button" class="btn btn-warning">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -199,16 +191,16 @@ include_once 'functions.php';
         <section id="bottom-section">
             <div class="container">
                 <div class="row" id="second-row">
-                    <div class="col-sm-6 col-md-2">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a >Food Ordering System</a></h6>
                         <p><a >Order delivery</a></p>
                     </div>
-                    <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a>About Us</a></h6>
-                        <p><a href="about.php">About Us</a></p>
+                        <p><a>About Us</a></p>
                         <p><a >Contact Us</a></p>
                     </div>
-                    <div class="col-sm-6 col-md-2">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
                             <h6><a>My Account</a></h6>
                             <p><a href="
                             <?php
@@ -234,21 +226,7 @@ include_once 'functions.php';
                             ?>">My Cart</a></p>
                              
                         </div>
-                        <div class="col-sm-6 col-md-2">
-                            <h6><a>Track Order</a></h6>
-                            <p><a href="
-                            <?php
-                            if($loggedin)
-                            {
-                                echo 'trackorder.php';
-                            }
-                            else
-                            {
-                                echo 'login.php';
-                            }
-                            ?>">Track Order</a></p>
-                        </div>
-                    <div class="col-sm-6 col-md-2">
+                        <div class="col-sm-6 col-md-4 col-lg-3">
                         <h6><a>Admin</a></h6>
                         <p><a href="
                             <?php
@@ -262,6 +240,7 @@ include_once 'functions.php';
                             }
                             ?>">Admin</a></p>
                     </div>
+                </div>
                 </div>
             </div>
         </section>
