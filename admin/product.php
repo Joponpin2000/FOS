@@ -227,4 +227,4 @@ $result = mysqli_query($db_connect, $sql);
         <!-- ALL PLUGINS -->
         <script src="../js/custom.js"></script>
     </body>
-</html>
+</html
