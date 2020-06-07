@@ -8,17 +8,10 @@ if(!isset($_SESSION['admin']))
 	header("location:adminlogin.php");
 }
 
-$categories_id = "";
 $name = "";
-$mrp = "";
 $price = "";
-$qty = "";
 $image = "";
-$short_desc = "";
 $description = "";
-$meta_title = "";
-$meta_desc = "";
-$meta_keyword = "";
 
 $msg = "";
 $image_required = 'required';
@@ -26,7 +19,7 @@ $image_required = 'required';
 if (isset($_GET['id']) && (trim($_GET['id']) != ''))
 {
     // Prepare an update statement
-    $sql = "SELECT * FROM product WHERE id = ? ";
+    $sql = "SELECT * FROM foods WHERE id = ? ";
     if ($stmt = mysqli_prepare($db_connect, $sql))
     {
         $image_required = '';
@@ -43,17 +36,10 @@ if (isset($_GET['id']) && (trim($_GET['id']) != ''))
             if (mysqli_num_rows($result) == 1)
             {
                 $row = mysqli_fetch_assoc($result);
-                $categories_id = $row['categories_id'];    
-                $name = $row['name'];    
-                $mrp = $row['mrp'];    
+                $name = $row['foodname'];    
                 $price = $row['price'];    
-                $qty = $row['qty'];    
-                $image = $row['image'];    
-                $short_desc = $row['short_desc'];    
+                $image = $row['filepath'];    
                 $description = $row['description'];    
-                $meta_title = $row['meta_title'];    
-                $meta_desc = $row['meta_desc'];    
-                $meta_keyword = $row['meta_keyword'];    
             }
             else
             {
@@ -72,20 +58,13 @@ if (isset($_GET['id']) && (trim($_GET['id']) != ''))
 
 if(isset($_POST['submit']))
 {
-    $categories_id = trim($_POST['categories_id']);
     $name = trim($_POST['name']);
-    $mrp = trim($_POST['mrp']);
     $price = trim($_POST['price']);
-    $qty = trim($_POST['qty']);
-    $short_desc = trim($_POST['short_desc']);
     $description = trim($_POST['description']);
-    $meta_title = trim($_POST['meta_title']);
-    $meta_desc = trim($_POST['meta_description']);
-    $meta_keyword = trim($_POST['meta_keyword']);
 
 
     // Prepare an update statement
-    $sql = "SELECT * FROM product WHERE name = ?";
+    $sql = "SELECT * FROM foods WHERE foodname = ?";
     if ($stmt = mysqli_prepare($db_connect, $sql))
     {
         // SET parameters
@@ -133,32 +112,21 @@ if(isset($_POST['submit']))
             if ($_FILES['image']['name'] != '')
             {
                 $image = rand(111111111, 999999999) . '_' . $_FILES['image']['name'];
-                move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH . $image);
+                move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH . "images/" . $image);
 
                 //prepare a select statement
-                $sql = "UPDATE product SET categories_id = ?, name = ?, mrp = ?, price = ?,
-                qty = ?, short_desc = ?, description = ?, meta_title = ?, meta_desc = ?,
-                meta_keyword = ?, image = ? WHERE id=? ";
+                $sql = "UPDATE foods SET foodname = ?, price = ?, description = ?, filepath = ? WHERE id=? ";
                 
                 if($stmt = mysqli_prepare($db_connect, $sql))
                 {
                     //Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "isddissssssi", $param_cat, $param_name, $param_mrp, $param_price, $param_qty,
-                $param_short_desc, $param_description, $param_meta_title, $param_meta_desc, $param_meta_keyword, $param_image,
-                $param_id);
+                    mysqli_stmt_bind_param($stmt, "sdssi", $param_name, $param_price, $param_description, $param_image, $param_id);
 
                     //set parameters
-                    $param_cat = $categories_id;
                     $param_name = $name;
-                    $param_mrp = $mrp;
                     $param_price = $price;
-                    $param_qty = $qty;
-                    $param_short_desc = $short_desc;
                     $param_description = $description;
-                    $param_meta_title = $meta_title;
-                    $param_meta_desc = $meta_desc;
-                    $param_meta_keyword = $meta_keyword;
-                    $param_image = $image;
+                    $param_image = "images/" . $image;
                     $param_id = $id;
 
                     // Execute the prepared statement
@@ -177,28 +145,18 @@ if(isset($_POST['submit']))
             else
             {
                 //prepare a select statement
-                $sql = "UPDATE product SET categories_id = ?, name = ?, mrp = ?, price = ?,
-                qty = ?, short_desc = ?, description = ?, meta_title = ?, meta_desc = ?,
-                meta_keyword = ? WHERE id=? ";
+                $sql = "UPDATE foods SET foodname = ?, price = ?,
+                description = ? WHERE id=? ";
                 
                 if($stmt = mysqli_prepare($db_connect, $sql))
                 {
                     //Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "isddisssssi", $param_cat, $param_name, $param_mrp, $param_price, $param_qty,
-                $param_short_desc, $param_description, $param_meta_title, $param_meta_desc, $param_meta_keyword, 
-                $param_id);
+                    mysqli_stmt_bind_param($stmt, "sdsi", $param_name, $param_price, $param_description, $param_id);
 
                     //set parameters
-                    $param_cat = $categories_id;
                     $param_name = $name;
-                    $param_mrp = $mrp;
                     $param_price = $price;
-                    $param_qty = $qty;
-                    $param_short_desc = $short_desc;
                     $param_description = $description;
-                    $param_meta_title = $meta_title;
-                    $param_meta_desc = $meta_desc;
-                    $param_meta_keyword = $meta_keyword;
                     $param_id = $id;
 
                     // Execute the prepared statement
@@ -217,34 +175,23 @@ if(isset($_POST['submit']))
         else
         {
             $image = rand(111111111, 999999999) . '_' . $_FILES['image']['name'];
-            move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH . $image);
+            move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH . "images/" . $image);
             
             //prepare a select statement
-            $sql = "INSERT INTO product(categories_id, name, mrp, price, qty, short_desc, description, meta_title,
-             meta_desc, meta_keyword, status, image)
-             VALUES(?, ?, ?, ?, ?, ?, ?, ?,
-              ?, ?, ?, ?)";
+            $sql = "INSERT INTO foods(foodname, price, description, status, filepath)
+             VALUES(?, ?, ?, ?, ?)";
             
             if($stmt = mysqli_prepare($db_connect, $sql))
             {
                 //Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "isddisssssis", $param_cat, $param_name, $param_mrp, $param_price, $param_qty,
-                $param_short_desc, $param_description, $param_meta_title, $param_meta_desc, $param_meta_keyword, 
-                $param_status, $param_image);
+                mysqli_stmt_bind_param($stmt, "sdsis", $param_name, $param_price, $param_description, $param_status, $param_image);
 
                 //set parameters
-                $param_cat = $categories_id;
                 $param_name = $name;
-                $param_mrp = $mrp;
                 $param_price = $price;
-                $param_qty = $qty;
-                $param_short_desc = $short_desc;
                 $param_description = $description;
-                $param_meta_title = $meta_title;
-                $param_meta_desc = $meta_desc;
-                $param_meta_keyword = $meta_keyword;
                 $param_status = 1;
-                $param_image = $image;
+                $param_image = "images/" . $image;
 
                 // Execute the prepared statement
                 mysqli_stmt_execute($stmt);
@@ -307,9 +254,6 @@ if(isset($_POST['submit']))
                     </div>
                     <ul class="list-unstyled components">
                         <li>
-                            <a href="categories.php">Categories</a>
-                        </li>
-                        <li>
                             <a href="product.php" class="active">Product</a>
                         </li>
                         <li>
@@ -338,66 +282,21 @@ if(isset($_POST['submit']))
                             <div class="form-block">
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="category" class="form-control-label">Product</label>
-                                    <select class="form-control" name="categories_id">
-                                        <option>Select Category</option>
-                                        <?php
-                                            $res = mysqli_query($db_connect, "SELECT id,categories FROM categories ORDER BY categories ASC");
-                                            while($row = mysqli_fetch_assoc($res))
-                                            {
-                                                if ($row['id'] == $categories_id)
-                                                {
-                                                    echo "<option selected value=" .$row['id'] . ">" . $row['categories'] . "</option>";
-                                                }
-                                                else
-                                                {
-                                                    echo "<option value=" .$row['id'] . ">" . $row['categories'] . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="name" class="form-control-label">Product Name</label>
                                     <input type="text" name="name" class="form-control" value="<?php echo $name ?>" placeholder="Enter product name" required/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="mrp" class="form-control-label">MRP</label>
-                                    <input type="text" name="mrp" class="form-control" value="<?php echo $mrp ?>" placeholder="Enter product mrp" required/>
                                 </div>
                                 <div class="form-group">
                                     <label for="price" class="form-control-label">Price</label>
                                     <input type="text" name="price" class="form-control" value="<?php echo $price ?>" placeholder="Enter product price" required/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="qty" class="form-control-label">Qty</label>
-                                    <input type="text" name="qty" class="form-control" value="<?php echo $qty ?>" placeholder="Enter qty" required/>
-                                </div>
-                                <div class="form-group">
                                     <label for="image" class="form-control-label">Image</label>
                                     <input type="file" name="image" class="form-control" <?php echo $image_required ?>/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="short_desc" class="form-control-label">Short Description</label>
-                                    <textarea name="short_desc" class="form-control" placeholder="Enter product short description" required><?php echo $short_desc ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class="form-control-label">Description</label>
                                     <textarea name="description" class="form-control" placeholder="Enter product description"><?php echo $description ?></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label for="meta_title" class="form-control-label">Meta Title</label>
-                                    <textarea name="meta_title" class="form-control" placeholder="Enter product meta_title"><?php echo $meta_title ?></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="meta_description" class="form-control-label">Meta Description</label>
-                                    <textarea name="meta_description" class="form-control" placeholder="Enter product meta description"><?php echo $meta_desc ?></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="meta_keyword" class="form-control-label">Meta Keyword</label>
-                                    <textarea name="meta_keyword" class="form-control" placeholder="Enter product meta keyword"><?php echo $meta_keyword ?></textarea>
-                                </div>
-
                                 <button type="submit" name="submit" class="btn btn-warning btn-block">Submit</button>
                                 <span class="help-block" style="color:red;"><?php echo $msg; ?></span>
                             </form>

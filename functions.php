@@ -22,12 +22,12 @@ else
     $loggedin = FALSE;
 }
 
-define('SERVER_PATH', $_SERVER["DOCUMENT_ROOT"]. "/myprojects/FOS/");
-define('SITE_PATH', "http://127.0.0.1/myprojects/FOS/");
+define('SERVER_PATH', $_SERVER["DOCUMENT_ROOT"]. "/FOS/");
+define('SITE_PATH', "http://127.0.0.1/FOS/");
 
 
-define('PRODUCT_IMAGE_SERVER_PATH', SERVER_PATH. "admin/media/product/");
-define('PRODUCT_IMAGE_SITE_PATH', SITE_PATH. "/admin/media/product/");
+define('PRODUCT_IMAGE_SERVER_PATH', SERVER_PATH);
+define('PRODUCT_IMAGE_SITE_PATH', SITE_PATH);
 
 
 // function to create a table

@@ -86,9 +86,6 @@ $result = mysqli_query($db_connect, $sql);
                     </div>
                     <ul class="list-unstyled components">
                         <li>
-                            <a href="categories.php">Categories</a>
-                        </li>
-                        <li>
                             <a href="product.php">Product</a>
                         </li>
                         <li>

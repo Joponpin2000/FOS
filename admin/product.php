@@ -25,7 +25,7 @@ if (isset($_GET['type']) && trim($_GET['type']) != '')
             $status = '0';
         }
         //prepare a select statement
-        $sql = "UPDATE product SET status = ? WHERE id = ? ";
+        $sql = "UPDATE foods SET status = ? WHERE id = ? ";
         if($stmt = mysqli_prepare($db_connect, $sql))
         {
             //Bind variables to the prepared statement as parameters
@@ -52,7 +52,7 @@ if (isset($_GET['type']) && trim($_GET['type']) != '')
         $id = trim($_GET['id']);
         
         //prepare a select statement
-        $sql = "DELETE FROM product WHERE id = ?";
+        $sql = "DELETE FROM foods WHERE id = ?";
         if($stmt = mysqli_prepare($db_connect, $sql))
         {
             //Bind variables to the prepared statement as parameters
@@ -76,7 +76,7 @@ if (isset($_GET['type']) && trim($_GET['type']) != '')
 
 }
 
-$sql = "SELECT product.*, categories.categories FROM product, categories WHERE product.categories_id=categories.id ORDER BY product.id DESC";
+$sql = "SELECT * FROM foods ORDER BY id";
 $result = mysqli_query($db_connect, $sql);
 ?>
 
@@ -122,9 +122,6 @@ $result = mysqli_query($db_connect, $sql);
                     </div>
                     <ul class="list-unstyled components">
                         <li>
-                            <a href="categories.php">Categories</a>
-                        </li>
-                        <li>
                             <a class="active">Product</a>
                         </li>
                         <li>
@@ -154,12 +151,10 @@ $result = mysqli_query($db_connect, $sql);
                                 <tr>
                                     <th>#</th>
                                     <th>ID</th>
-                                    <th>Categories</th>
-                                    <th>Name</th>
+                                    <th>Foodname</th>
+                                    <th>Description</th>
                                     <th>Image</th>
-                                    <th>MRP</th>
                                     <th>Price</th>
-                                    <th>Qty</th>
                                     <th></th>
                                     </tr>
                             </thead>
@@ -172,12 +167,10 @@ $result = mysqli_query($db_connect, $sql);
                                     <tr>
                                         <td><?php echo $i ?></td>
                                         <td><?php echo $row['id'] ?></td>
-                                        <td><?php echo $row['categories'] ?></td>
-                                        <td><?php echo $row['name'] ?></td>
-                                        <td><img src="<?php echo PRODUCT_IMAGE_SITE_PATH . $row['image']?>" style="width: 40px; height: 30px"/></td>
-                                        <td><?php echo $row['mrp'] ?></td>
+                                        <td><?php echo $row['foodname'] ?></td>
+                                        <td><?php echo $row['description'] ?></td>
+                                        <td><img src="<?php echo PRODUCT_IMAGE_SITE_PATH . $row['filepath']?>" style="width: 40px; height: 30px"/></td>
                                         <td><?php echo $row['price'] ?></td>
-                                        <td><?php echo $row['qty'] ?></td>
                                         <td style="text-align: right;">
                                             <?php
                                             if ($row['status'] == 1)
