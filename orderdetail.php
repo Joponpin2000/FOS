@@ -3,15 +3,10 @@ session_start();
 include_once 'functions.php';
 
 if ($_SERVER["REQUEST_METHOD"] =="POST")
-{
-
-    if (isset($_POST['submit']))
+{            
+    if(isset($_POST['cancel']))
     {
-            
-        if(isset($_POST['cancel']))
-        {
-            $_SESSION['orders'] = '';
-        }
+        unset($_SESSION['orders']);
     }
 }
 
@@ -241,7 +236,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                     <p><b>City: </b><?php echo $_SESSION['city']; ?></p>
                     <br /><hr />
                     <a href="cart.php" type="button" style="background-color: #7386D5" class="btn btn-warning">Edit</a>
-                    <button type="submit" class="btn btn-link">Cancel this order</button>
+                    <button type="submit" name="cancel" class="btn btn-link">Cancel this order</button>
                 </form>
                 </div>
             </div>
