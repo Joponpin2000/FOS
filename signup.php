@@ -247,32 +247,32 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                         <p style="color: red;"><?php echo $msg;?></p>
                         <form method="post" action="<?php echo
                         htmlspecialchars($_SERVER["PHP_SELF"]); ?>" role="form" onsubmit="return(validate(this))">
-                            <div class="form-group <?php echo (!empty($firstname_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group">
                                 <label for="firstname">First Name</label>
                                 <input type="text" name="firstname" class="form-control" value="<?php echo $firstname; ?>" />
                                 <span class="help-block" style="color:red;"><?php echo $firstname_err; ?></span>
                             </div>
-                            <div class="form-group <?php echo (!empty($lastname_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group">
                                 <label for="lastname">Last Name</label>
                                 <input type="text" name="lastname" class="form-control" value="<?php echo $lastname; ?>" />
                                 <span class="help-block" style="color:red;"><?php echo $lastname_err; ?></span>
                             </div>
-                            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group">
                                 <label for="email">Email Address</label>
                                 <input type="text" name="email" class="form-control" value="<?php echo $email; ?>" />
                                 <span class="help-block" style="color:red;"><?php echo $email_err; ?></span>
                             </div>
-                            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>" />
                                 <span class="help-block" style="color:red;"><?php echo $username_err; ?></span>
                             </div>
-                            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="text" name="password" class="form-control" value="<?php echo $password; ?>" />
                                 <span class="help-block" style="color:red;"><?php echo $password_err; ?></span>
                             </div>
-                            <div class="form-group <?php echo (!empty($rpassword_err)) ? 'has-error' : ''; ?>">
+                            <div class="form-group">
                                 <label for="rpassword">Repeat Password</label>
                                 <input type="text" name="rpassword" class="form-control" value="<?php echo $rpassword; ?>" />
                                 <span class="help-block" style="color:red;"><?php echo $rpassword_err; ?></span>
