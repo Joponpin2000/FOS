@@ -112,7 +112,7 @@ if(isset($_POST['submit']))
             if ($_FILES['image']['name'] != '')
             {
                 $image = rand(111111111, 999999999) . '_' . $_FILES['image']['name'];
-                move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH . "images/" . $image);
+                move_uploaded_file($_FILES['image']['tmp_name'], PRODUCT_IMAGE_SERVER_PATH . "images/" . $image);
 
                 //prepare a select statement
                 $sql = "UPDATE foods SET foodname = ?, price = ?, description = ?, filepath = ? WHERE id=? ";
@@ -175,7 +175,7 @@ if(isset($_POST['submit']))
         else
         {
             $image = rand(111111111, 999999999) . '_' . $_FILES['image']['name'];
-            move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH . "images/" . $image);
+            move_uploaded_file($_FILES['image']['tmp_name'], PRODUCT_IMAGE_SERVER_PATH . "images/" . $image);
             
             //prepare a select statement
             $sql = "INSERT INTO foods(foodname, price, description, status, filepath)
@@ -231,7 +231,7 @@ if(isset($_POST['submit']))
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/logo_2.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->

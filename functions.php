@@ -22,7 +22,7 @@ else
     $loggedin = FALSE;
 }
 
-define('SERVER_PATH', $_SERVER["DOCUMENT_ROOT"]. "/FOS/");
+define('SERVER_PATH', $_SERVER["DOCUMENT_ROOT"] . "//FOS/");
 define('SITE_PATH', "http://127.0.0.1/FOS/");
 
 
@@ -44,5 +44,4 @@ function createTable($db_connect, $tablename, $tablevalues)
     }
 
 }
-
 ?>

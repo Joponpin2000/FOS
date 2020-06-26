@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/logo_2.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
@@ -74,9 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                                     <?php
                                     if($loggedin)
                                     {
-                                        echo <<<END
+                                    ?>
                                         <li class="nav-item">
-                                            <a class="active nav-link" href="cart.php">Cart</a>
+                                            <a class="nav-link" href="cart.php">Cart<sup class="notification"><?php echo $_SESSION['notification']; ?></sup></a>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">My Account </a>
@@ -86,13 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                                                 <a class="dropdown-item" href="logout.php">Logout</a>
                                             </div>
                                         </li>
-                                        END;
 
-                                    
+                                    <?php
                                     }
                                     else
                                     {
-                                        echo <<<END
+                                    ?>
                                         <li class="nav-item">
                                         <a class="nav-link" href="signup.php">Sign Up</a>
                                         </li>
@@ -107,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST")
                                                 <a class="dropdown-item" href="logout.php">Logout</a>
                                             </div>
                                         </li> 
-                                        END;
+                                    <?php
                                     }?>                                   
                                     </ul>
                             </div>

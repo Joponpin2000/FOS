@@ -9,6 +9,8 @@ if ($loggedin)
     {
         $_SESSION['orders'][] = $_POST['id'];
     }
+    
+    $_SESSION['notification'] = (count($_SESSION['orders']) > 0) ? count($_SESSION['orders']) : 0;
 }
 ?>
 
@@ -29,7 +31,7 @@ if ($loggedin)
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/logo_2.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
@@ -73,9 +75,9 @@ if ($loggedin)
                                     <?php
                                     if($loggedin)
                                     {
-                                        echo <<<END
+                                    ?>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="cart.php">Cart</a>
+                                            <a class="nav-link" href="cart.php">Cart<sup class="notification"><?php echo $_SESSION['notification']; ?></sup></a>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">My Account </a>
@@ -85,13 +87,12 @@ if ($loggedin)
                                                 <a class="dropdown-item" href="logout.php">Logout</a>
                                             </div>
                                         </li>
-                                        END;
 
-                                    
+                                    <?php
                                     }
                                     else
                                     {
-                                        echo <<<END
+                                    ?>
                                         <li class="nav-item">
                                         <a class="nav-link" href="signup.php">Sign Up</a>
                                         </li>
@@ -106,7 +107,7 @@ if ($loggedin)
                                                 <a class="dropdown-item" href="logout.php">Logout</a>
                                             </div>
                                         </li> 
-                                        END;
+                                    <?php
                                     }?>                                   
                                     </ul>
                             </div>
@@ -125,7 +126,7 @@ if ($loggedin)
                         <p>
                             <input type="text" name="food-search" class="form-control" id="food-search" placeholder="I would like to eat..." title="Type in a food" />
                         </p>
-                        <div id="result" style="position:fixed;top:300; right:500;z-index: 3000;width:350px;background:white;"></div>
+                        <div id="result" style="position:relative;top:300; right:500;z-index: 3000;width:350px;background:white;"></div>
                         <!--<a href="menu.php" role="button" class="btn btn-warning">Search</a>-->
                     </div>
                 </div>
@@ -156,7 +157,7 @@ if ($loggedin)
                         while($row=mysqli_fetch_array($query))
                         {
                             ?>
-                            <div class="col-sm-8 col-md-4 col-lg-4" style="margin-bottom:10px;">
+                            <div class="col-sm-8 col-md-4 col-lg-4" style="margin-bottom:20px;">
                                 <form method="POST" action="<?php echo
                                 htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                     <div class="thumbnail center-block">

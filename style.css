@@ -225,6 +225,12 @@ ul.breadcrumb li+li:before {
     color: #777779;
 }
 
+.notification {
+    background-color: red;
+    border-radius: 50%;
+    padding: 3px;
+}
+
 /*************************M-E-N-U***********************************
 *************************************************************/
 
